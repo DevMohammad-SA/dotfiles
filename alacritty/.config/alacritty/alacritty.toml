@@ -1,0 +1,43 @@
+general.import = [
+  #  "~/dotfiles/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
+  "~/dotfiles/alacritty/moonfly-default.toml",
+]
+[env]
+TERM = "xterm-256color"
+PYTHONWARNINGS = "ignore"
+LANG = "en_US.UTF-8"
+
+[cursor.style]
+blinking = "on"
+shape = "Block"
+# dir
+[font]
+size = 14.0
+[font.normal]
+#family = "BigBlueTermPlus Nerd Font"
+#family = "DepartureMonoNerdFont"
+#family = "GohuFont 14 Nerd Font"
+#family = "FiraCode"
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[terminal.shell]
+program = "/bin/zsh"
+
+[window]
+decorations = "full"
+dynamic_padding = true
+opacity = 0.75
+blur = true
+startup_mode = "Windowed"
+title = "Alacritty"
+
+[window.padding]
+x = 10
+y = 10
+# Keybindings
+[keyboard]
+bindings=[
+{key='`',mods='Control',action="ToggleFullscreen"},
+]
+[terminal]
