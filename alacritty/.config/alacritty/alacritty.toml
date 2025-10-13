@@ -12,7 +12,7 @@ blinking = "on"
 shape = "Block"
 # dir
 [font]
-size = 14.0
+size = 18.00
 [font.normal]
 #family = "BigBlueTermPlus Nerd Font"
 #family = "DepartureMonoNerdFont"
@@ -27,14 +27,14 @@ program = "/bin/zsh"
 [window]
 decorations = "full"
 dynamic_padding = true
-opacity = 0.75
-blur = true
+#opacity = 0.75
+#blur = true
 startup_mode = "Windowed"
 title = "Alacritty"
 
 [window.padding]
-x = 10
-y = 10
+x = 5
+y = 5
 # Keybindings
 [keyboard]
 bindings=[
