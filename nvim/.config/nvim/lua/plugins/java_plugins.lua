@@ -1,8 +1,8 @@
 return {
   -- LSP support
   { "neovim/nvim-lspconfig" },
-  { "williamboman/mason.nvim", build = ":MasonUpdate" },
-  { "williamboman/mason-lspconfig.nvim" },
+  { "mason-org/mason.nvim", build = ":MasonUpdate" },
+  { "mason-org/mason-lspconfig.nvim" },
 
   -- Java LSP
   {
@@ -10,7 +10,7 @@ return {
     ft = { "java" }, -- load only for Java files
     dependencies = {
       "mfussenegger/nvim-dap", -- for debugging
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
     },
   },
 
