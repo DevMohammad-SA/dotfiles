@@ -3,6 +3,8 @@
 alias vtop="vtop --theme catppuccin-mocha-blue"
 alias ezaf="eza --oneline --reverse --sort=size -lah --long --git --tree --level=2"
 alias ls1="ls -1"
+alias py="python"
+alias py3="python3"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -68,6 +70,8 @@ COMPLETION_WAITING_DOTS="%F..."%f
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 HIST_STAMPS="dd-mm-yyyy"
+HISTSIZE=50
+SAVEHIST=50
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
