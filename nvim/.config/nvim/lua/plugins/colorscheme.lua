@@ -1,35 +1,22 @@
 return {
-  -- Installed Themes
-  { "Mofiqul/dracula.nvim" },
-  { "ellisonleao/gruvbox.nvim" },
-
-  -- Default theme with transparency + blur
+  -- Install the theme
   {
-    "folke/tokyonight.nvim",
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
     priority = 1000,
     opts = {
-      style = "night", -- or "storm", "moon", "day"
-      transparent = true, -- make background transparent
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-      dim_inactive = true, -- slightly dim inactive windows
-      lualine_bold = true, -- bold section headers in lualine
-      on_colors = function(colors)
-        -- tweak background for blur effect (depends on compositor)
-        colors.bg = "none"
-        colors.bg_dark = "none"
-        colors.bg_float = "none"
-      end,
+      variant = "default",
+      transparent = true,
+      saturation = 1,
+      italic_comments = false,
     },
   },
 
-  -- Set colorscheme in LazyVim
+  -- Set cyberdream as default colorscheme
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "cyberdream",
     },
   },
 }

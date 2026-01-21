@@ -1,12 +1,3 @@
--- Helper: detect active Python interpreter
-local function get_python_path()
-  local venv = os.getenv("VIRTUAL_ENV")
-  if venv then
-    return venv .. "/bin/python"
-  end
-  return "python3"
-end
-
 return {
   {
     "neovim/nvim-lspconfig",
@@ -15,7 +6,6 @@ return {
         pyright = {
           settings = {
             python = {
-              pythonPath = get_python_path(),
               analysis = {
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,

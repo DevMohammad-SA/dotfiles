@@ -24,7 +24,6 @@ Plugin 'vim-scripts/DjangoTemplates'       " Django HTML templates
 " === Utilities ===
 Plugin 'tpope/vim-surround'                " Quoting/tagging
 Plugin 'tpope/vim-commentary'              " Easy commenting
-Plugin 'tpope/vim-fugitive'                " Git integration
 Plugin 'jiangmiao/auto-pairs'              " Auto-close brackets/quotes
 Plugin 'Yggdroot/indentLine'               " Show indent guides
 Plugin 'scrooloose/nerdtree'               " File tree

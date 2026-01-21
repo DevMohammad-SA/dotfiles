@@ -5,6 +5,9 @@ alias ezaf="eza --oneline --reverse --sort=size -lah --long --git --tree --level
 alias ls1="ls -1"
 alias py="python"
 alias py3="python3"
+alias update="sudo pacman -Syu"
+alias debian="ssh mohammad@192.168.100.110"
+alias autoremove="sudo pacman -Rns $(pacman -Qtdq)"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 

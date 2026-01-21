@@ -1,7 +1,8 @@
 general.import = [
-  #  "~/dotfiles/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
-  # "~/dotfiles/alacritty/moonfly-default.toml",
-  "~/dotfiles/alacritty/gruvbox-dark-soft-contrast.toml",
+  # "~/dotfiles/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
+  "~/dotfiles/alacritty/moonfly-default.toml",
+  #"~/dotfiles/alacritty/gruvbox-dark-soft-contrast.toml",
+  "~/dotfiles/alacritty/cyberdream.toml",
 ]
 [env]
 TERM = "xterm-256color"
@@ -28,8 +29,8 @@ program = "/bin/zsh"
 [window]
 decorations = "full"
 dynamic_padding = true
-#opacity = 0.75
-#blur = true
+opacity = 0.75
+blur = true
 startup_mode = "Windowed"
 title = "Alacritty"
 
@@ -38,7 +39,5 @@ x = 5
 y = 5
 # Keybindings
 [keyboard]
-bindings=[
-{key='`',mods='Control',action="ToggleFullscreen"},
-]
+bindings = [{ key = '`', mods = 'Control', action = "ToggleFullscreen" }]
 [terminal]
