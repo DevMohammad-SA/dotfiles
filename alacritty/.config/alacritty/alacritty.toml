@@ -2,7 +2,7 @@ general.import = [
   # "~/dotfiles/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
   "~/dotfiles/alacritty/moonfly-default.toml",
   #"~/dotfiles/alacritty/gruvbox-dark-soft-contrast.toml",
-  "~/dotfiles/alacritty/cyberdream.toml",
+  #"~/dotfiles/alacritty/cyberdream.toml",
 ]
 [env]
 TERM = "xterm-256color"
@@ -14,7 +14,7 @@ blinking = "on"
 shape = "Block"
 # dir
 [font]
-size = 14.00
+size = 12
 [font.normal]
 #family = "BigBlueTermPlus Nerd Font"
 #family = "DepartureMonoNerdFont"
