@@ -17,8 +17,6 @@ shape = "Block"
 size = 12
 [font.normal]
 #family = "BigBlueTermPlus Nerd Font"
-#family = "DepartureMonoNerdFont"
-#family = "GohuFont 14 Nerd Font"
 #family = "FiraCode"
 family = "JetBrainsMono Nerd Font"
 style = "Bold"
@@ -28,8 +26,8 @@ program = "/bin/zsh"
 
 [window]
 decorations = "full"
-dynamic_padding = true
-opacity = 0.75
+#dynamic_padding = true
+#opacity = 0.75
 blur = true
 startup_mode = "Windowed"
 title = "Alacritty"
