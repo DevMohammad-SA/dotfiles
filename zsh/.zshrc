@@ -1,4 +1,5 @@
 # MOTD 
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 ~/.scripts/motd.sh
 alias vtop="vtop --theme catppuccin-mocha-blue"
 alias ezaf="eza --oneline --reverse --sort=size -lah --long --git --tree --level=2"

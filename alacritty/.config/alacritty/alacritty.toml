@@ -1,9 +1,11 @@
 general.import = [
   # "~/dotfiles/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
-  "~/dotfiles/alacritty/moonfly-default.toml",
-  #"~/dotfiles/alacritty/gruvbox-dark-soft-contrast.toml",
-  #"~/dotfiles/alacritty/cyberdream.toml",
+  # "~/dotfiles/alacritty/moonfly-default.toml",
+  # "~/dotfiles/alacritty/gruvbox-dark-soft-contrast.toml",
+  # "~/dotfiles/alacritty/cyberdream.toml",
+  "~/dotfiles/alacritty/tokyo-night.toml",
 ]
+
 [env]
 TERM = "xterm-256color"
 PYTHONWARNINGS = "ignore"
@@ -12,22 +14,25 @@ LANG = "en_US.UTF-8"
 [cursor.style]
 blinking = "on"
 shape = "Block"
+
 # dir
 [font]
 size = 12
+
 [font.normal]
-#family = "BigBlueTermPlus Nerd Font"
-#family = "FiraCode"
+# family = "BigBlueTermPlus Nerd Font"
+# family = "FiraCode"
 family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
+[terminal]
 [terminal.shell]
 program = "/bin/zsh"
 
 [window]
 decorations = "full"
-#dynamic_padding = true
-#opacity = 0.75
+# dynamic_padding = true
+# opacity = 0.75
 blur = true
 startup_mode = "Windowed"
 title = "Alacritty"
@@ -35,7 +40,7 @@ title = "Alacritty"
 [window.padding]
 x = 5
 y = 5
+
 # Keybindings
 [keyboard]
-bindings = [{ key = '`', mods = 'Control', action = "ToggleFullscreen" }]
-[terminal]
+bindings = [{ key = "`", mods = "Control", action = "ToggleFullscreen" }]
