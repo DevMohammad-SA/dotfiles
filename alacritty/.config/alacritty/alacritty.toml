@@ -12,12 +12,12 @@ PYTHONWARNINGS = "ignore"
 LANG = "en_US.UTF-8"
 
 [cursor.style]
-blinking = "on"
+blinking = "On" # values are =['On', 'Off', 'Always','Never']
 shape = "Block"
 
 # dir
 [font]
-size = 12
+size = 9
 
 [font.normal]
 # family = "BigBlueTermPlus Nerd Font"
