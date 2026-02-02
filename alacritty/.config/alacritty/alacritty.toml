@@ -17,7 +17,7 @@ shape = "Block"
 
 # dir
 [font]
-size = 9
+size = 13
 
 [font.normal]
 # family = "BigBlueTermPlus Nerd Font"
@@ -31,9 +31,9 @@ program = "/bin/zsh"
 
 [window]
 decorations = "full"
-# dynamic_padding = true
+dynamic_padding = true
 # opacity = 0.75
-blur = true
+# blur = true
 startup_mode = "Windowed"
 title = "Alacritty"
 
