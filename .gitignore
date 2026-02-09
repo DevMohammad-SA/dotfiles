@@ -1,34 +1,89 @@
-# Neovim / Vim junk
+# =====================================
+# Neovim / Vim Configuration Files
+# =====================================
+
+# Neovim runtime files
 **/nvim/.cache/
 **/nvim/.local/
 **/nvim/.shada
 **/nvim/*.log
+**/nvim/site/pack/
+
+# Vim runtime files
 **/vim/.viminfo
 **/vim/swap//
 **/vim/backup//
 **/vim/undo//
-
-**/nvim/site/pack/
 **/vim/plugged/
-**/nvim/lazy-lock.json   # optional: ignore if you don’t want lockfiles public
 
+# Plugin lockfiles (optional: uncomment if you want to version lock files)
+**/nvim/lazy-lock.json
+
+# =====================================
+# Shell Configuration Files
+# =====================================
+
+# Zsh runtime files
 **/.zsh_history
 **/.zcompdump*
 **/.zprofile.local
 **/.zshrc.local
 
+# =====================================
+# Terminal Multiplexer
+# =====================================
+
+# Tmux runtime files
 **/tmux/resurrect/
 **/tmux/plugins/
 
+# =====================================
+# Terminal Emulator Configurations
+# =====================================
+
+# Local machine-specific configs
 **/alacritty/*.local.yml
 **/ghostty/*.local
 
+# =====================================
+# Operating System Files
+# =====================================
+
+# macOS
 .DS_Store
+
+# Windows
 Thumbs.db
 
+# =====================================
+# Security & Sensitive Data
+# =====================================
+
+# Never commit sensitive files
 **/*secret*
 **/*token*
 **/*key*
 **/*.pem
 **/*.env
+**/.env*
 
+# SSH keys
+**/*.pub
+**/id_rsa
+**/id_ed25519
+
+# =====================================
+# Development & Build Artifacts
+# =====================================
+
+# Node modules (if any)
+**/node_modules/
+
+# Python
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+
+# Logs
+**/*.log
+**/logs/
