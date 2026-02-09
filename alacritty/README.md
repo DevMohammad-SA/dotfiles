@@ -22,11 +22,11 @@ general.import = [
 ```
 
 Available themes:
-- `~/dotfiles/alacritty/catppuccin-mocha.toml`
-- `~/dotfiles/alacritty/tokyo-night.toml`
-- `~/dotfiles/alacritty/moonfly-default.toml`
-- `~/dotfiles/alacritty/gruvbox-dark-soft-contrast.toml`
-- `~/dotfiles/alacritty/cyberdream.toml`
+- `~/.dotfiles/alacritty/catppuccin-mocha.toml`
+- `~/.dotfiles/alacritty/tokyo-night.toml`
+- `~/.dotfiles/alacritty/moonfly-default.toml`
+- `~/.dotfiles/alacritty/gruvbox-dark-soft-contrast.toml`
+- `~/.dotfiles/alacritty/cyberdream.toml`
 
 **Note**: Update the path to match where you cloned your dotfiles (e.g., `~/.dotfiles` or `~/dotfiles`).
 
