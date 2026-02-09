@@ -1,9 +1,13 @@
 general.import = [
-  # "~/dotfiles/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
-  # "~/dotfiles/alacritty/moonfly-default.toml",
-  # "~/dotfiles/alacritty/gruvbox-dark-soft-contrast.toml",
-  # "~/dotfiles/alacritty/cyberdream.toml",
-  "~/dotfiles/alacritty/tokyo-night.toml",
+  # Uncomment the theme you want to use
+  # Make sure to update the path to match where you cloned dotfiles
+  # Example: If cloned to ~/.dotfiles, use "~/.dotfiles/alacritty/theme.toml"
+  
+  # "~/.dotfiles/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
+  # "~/.dotfiles/alacritty/moonfly-default.toml",  # moonfly theme
+  # "~/.dotfiles/alacritty/gruvbox-dark-soft-contrast.toml",  # gruvbox theme
+  # "~/.dotfiles/alacritty/cyberdream.toml",  # cyberdream theme
+  "~/.dotfiles/alacritty/tokyo-night.toml",  # tokyo-night theme (default)
 ]
 
 [env]
