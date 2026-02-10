@@ -6,7 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-02-10
+
 ### Added
+- **Bash shell configuration** (`bash/`) with feature-rich `.bashrc`:
+  - [ble.sh](https://github.com/akinomyoga/ble.sh) integration for syntax highlighting and fish-like auto-suggestions
+  - Colorized prompt with Git branch display
+  - Colored output for `ls`, `grep`, `diff`, `ip`, and man pages
+  - Enhanced tab completion (case-insensitive, colored stats, visible stats)
+  - `bash-completion` package integration
+  - Better history management with deduplication and arrow-key search
+  - MOTD script support (`~/.scripts/motd.sh`)
+- Bash configuration documentation (`bash/README.md`)
+- Bash troubleshooting section in main README
+- Bash symlink in manual installation instructions
 - Automated installation script (`install.sh`) for easy setup
 - MIT License file
 - Individual README files for major configurations:
@@ -23,6 +36,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - This CHANGELOG file
 
 ### Changed
+- Updated README to include Bash in "What's Included" and directory structure
+- Updated requirements: Bash or Zsh (previously Zsh only)
+- Added `ble.sh` and `bash-completion` to optional requirements
+- Updated features section to reflect dual shell support (Bash + Zsh)
+- Added Bash Configuration to Individual Configuration Docs listing
 - Updated README to reflect actual repository structure
 - Removed references to non-existent hyprland and waybar configurations
 - Improved Alacritty theme import paths to be more portable
