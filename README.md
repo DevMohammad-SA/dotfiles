@@ -5,12 +5,12 @@
 
 A curated collection of configuration files for my personal development environment. These dotfiles are designed for a modern Linux/macOS setup with a focus on productivity and aesthetics.
 
-## 📸 Preview
+## Preview
+<img width="1920" height="1080" alt="Screenshot_20260210_233438" src="https://github.com/user-attachments/assets/b6471011-a7aa-497d-b2f4-826feb49c2bd" />
+<img width="1920" height="1080" alt="Screenshot_20260210_233349" src="https://github.com/user-attachments/assets/34bb7372-3f39-4418-a4a7-cdf4f58c0a88" />
+<img width="1431" height="763" alt="Screenshot_20260210_233450" src="https://github.com/user-attachments/assets/33252d77-f103-41c0-b7e7-017ac4d4da26" />
 
-<!-- Add screenshots of your setup here -->
-> **Note**: Add screenshots of your terminal setup, themes, and workflow to showcase your configuration!
-
-## ⚡ Quick Start
+## Quick Start
 
 ```bash
 # Clone the repository
@@ -24,11 +24,12 @@ chmod +x install.sh
 # Restart your terminal
 ```
 
-## 📦 What's Included
+## What's Included
 
 ### Terminal & Shell
 - **Alacritty** - GPU-accelerated terminal emulator
 - **Ghostty** - Fast, feature-rich terminal emulator
+- **Bash** - Lightweight, fast shell with ble.sh for syntax highlighting & auto-suggestions
 - **Zsh** - Extended shell with custom configurations
 - **Tmux** - Terminal multiplexer for session management
 
@@ -36,19 +37,20 @@ chmod +x install.sh
 - **Neovim** - Modern Vim-based editor with LazyVim configuration
 - **Vim** - Classic text editor with custom vimrc
 
-## 📁 Structure
+## Structure
 
 ```
 dotfiles/
 ├── alacritty/      # Terminal emulator configuration with themes
+├── bash/           # Bash shell configuration with ble.sh
 ├── ghostty/        # Alternative terminal emulator config
 ├── nvim/           # Neovim configuration with LazyVim
 ├── tmux/           # Terminal multiplexer settings with plugins
 ├── vimrc/          # Classic Vim configuration
-└── zsh/            # Shell configuration and themes
+└── zsh/            # Zsh shell configuration and themes
 ```
 
-## 🚀 Installation
+## Installation
 
 1. **Clone the repository**
    ```bash
@@ -73,6 +75,7 @@ dotfiles/
    # Backup existing configs (recommended)
    mkdir -p ~/.config_backup
    cp -r ~/.config/nvim ~/.config_backup/ 2>/dev/null || true
+   cp ~/.bashrc ~/.config_backup/ 2>/dev/null || true
    cp ~/.zshrc ~/.config_backup/ 2>/dev/null || true
    cp ~/.tmux.conf ~/.config_backup/ 2>/dev/null || true
    
@@ -81,35 +84,39 @@ dotfiles/
    ln -sf ~/.dotfiles/alacritty/.config/alacritty ~/.config/alacritty
    ln -sf ~/.dotfiles/ghostty ~/.config/ghostty
    ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
+   ln -sf ~/.dotfiles/bash/.bashrc ~/.bashrc
    ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
    ln -sf ~/.dotfiles/vimrc/.vimrc ~/.vimrc
    ```
 
-## ✨ Features
+## Features
 
 - **Modern Development Environment**: Optimized for coding with syntax highlighting, autocompletion, and LSP support
 - **Multiple Themes**: Includes Catppuccin Mocha, Tokyo Night, Moonfly, Gruvbox, and Cyberdream themes
 - **Aesthetic UI**: Carefully chosen themes and color schemes for a pleasant visual experience
-- **Productivity Tools**: Terminal multiplexing with tmux, efficient shell environment with zsh
+- **Dual Shell Support**: Fully configured Bash (with ble.sh) and Zsh (with Oh My Zsh) environments
+- **Productivity Tools**: Terminal multiplexing with tmux, efficient shell environments
 - **Cross-terminal Support**: Configurations for both Alacritty and Ghostty terminal emulators
 - **Easy Installation**: Automated installation script for quick setup
 
-## 📋 Requirements
+## Requirements
 
 ### Essential
 - Linux or macOS
 - Git
-- Zsh (shell)
+- Bash or Zsh (shell)
 - Neovim (>= 0.8.0)
 
 ### Optional
 - Tmux (terminal multiplexer)
 - Alacritty or Ghostty (terminal emulator)
-- [Oh My Zsh](https://ohmyz.sh/) (zsh configuration framework)
+- [ble.sh](https://github.com/akinomyoga/ble.sh) (Bash syntax highlighting & auto-suggestions)
+- [bash-completion](https://github.com/scop/bash-completion) (enhanced Bash tab completion)
+- [Oh My Zsh](https://ohmyz.sh/) (Zsh configuration framework)
 - [TPM](https://github.com/tmux-plugins/tpm) (tmux plugin manager)
 - JetBrains Mono Nerd Font (recommended font)
 
-## 🎨 Themes
+## Themes
 
 The repository includes multiple color schemes:
 - **Catppuccin Mocha** - Soothing pastel theme
@@ -124,14 +131,15 @@ To switch themes, edit the import line in `alacritty/.config/alacritty/alacritty
 
 Feel free to fork this repository and modify the configurations to suit your needs. Each configuration directory contains settings that can be independently customized.
 
-## 📚 Individual Configuration Docs
+## Individual Configuration Docs
 
 - [Neovim Setup](nvim/.config/nvim/README.md) - LazyVim configuration details
 - [Tmux Configuration](tmux/README.md) - Plugin setup and keybindings
+- [Bash Configuration](bash/README.md) - ble.sh setup, completions, and customization guide
 - [Zsh Configuration](zsh/README.md) - Plugins and customization guide
 - [Alacritty Themes](alacritty/README.md) - Theme selection and customization
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Fonts not displaying correctly
 Install a Nerd Font for proper icon display:
@@ -152,6 +160,27 @@ Initialize TPM (Tmux Plugin Manager):
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Then in tmux, press: prefix + I (capital i)
+```
+
+### Bash auto-suggestions / syntax highlighting not working
+Install ble.sh for Bash:
+```bash
+git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git
+make -C ble.sh install PREFIX=~/.local
+```
+Install bash-completion:
+```bash
+# On Debian/Ubuntu
+sudo apt install bash-completion
+
+# On Fedora/RHEL
+sudo dnf install bash-completion
+
+# On macOS (Homebrew)
+brew install bash-completion@2
+
+# On Arch
+sudo pacman -S bash-completion
 ```
 
 ### Zsh plugins missing
