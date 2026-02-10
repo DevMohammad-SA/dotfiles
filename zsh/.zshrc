@@ -1,14 +1,12 @@
+zmodload zsh/zprof
 # MOTD 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 ~/.scripts/motd.sh
-alias vtop="vtop --theme catppuccin-mocha-blue"
-alias ezaf="eza --oneline --reverse --sort=size -lah --long --git --tree --level=2"
-alias ls1="ls -1"
-alias py="python"
-alias py3="python3"
-alias update="sudo pacman -Syu"
-alias debian="ssh mohammad@192.168.100.110"
-alias autoremove="sudo pacman -Rns $(pacman -Qtdq)"
+alias eza='eza --icons --group-directories-first'
+alias ezaf='eza -lh --icons --group-directories-first'
+alias ezaa='eza -lha --icons --group-directories-first'
+alias tree='eza --tree --icons'
+alias debian='ssh mohammad@192.168.100.110'
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -38,8 +36,8 @@ SOLARIZED_THEME="dark"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -93,8 +91,6 @@ plugins=(
   zsh-completions
   fzf
   extract
-  docker
-  npm
   kubectl
   history-substring-search
   colored-man-pages
@@ -133,3 +129,4 @@ alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="$HOME/.npm-global/bin:$PATH"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+zprof

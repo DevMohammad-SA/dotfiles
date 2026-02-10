@@ -22,13 +22,13 @@ shape = "Block"
 
 # dir
 [font]
-size = 12
+size = 14
 
 [font.normal]
-family = "BigBlueTermPlus Nerd Font"
+# family = "BigBlueTermPlus Nerd Font"
 # family = "FiraCode"
-# family = "JetBrainsMono Nerd Font"
-style = "Medium"
+family = "JetBrainsMono Nerd Font"
+style = "SemiBold"
 
 [terminal]
 [terminal.shell]
