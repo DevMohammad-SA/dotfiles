@@ -2,12 +2,13 @@ general.import = [
   # Uncomment the theme you want to use
   # Make sure to update the path to match where you cloned dotfiles
   # Example: If cloned to ~/.dotfiles, use "~/.dotfiles/alacritty/theme.toml"
-  
-  # "~/.dotfiles/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
-  # "~/.dotfiles/alacritty/moonfly-default.toml",  # moonfly theme
-  # "~/.dotfiles/alacritty/gruvbox-dark-soft-contrast.toml",  # gruvbox theme
-  # "~/.dotfiles/alacritty/cyberdream.toml",  # cyberdream theme
-  "~/.dotfiles/alacritty/tokyo-night.toml",  # tokyo-night theme (default)
+
+  # "~/dotfiles/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
+  # "~/dotfiles/alacritty/moonfly-default.toml",  # moonfly theme
+  # "~/dotfiles/alacritty/gruvbox-dark-soft-contrast.toml",  # gruvbox theme
+  # "~/dotfiles/alacritty/cyberdream.toml",  # cyberdream theme
+  # "~/dotfiles/alacritty/tokyo-night.toml",  # tokyo-night theme (default)
+  "~/dotfiles/alacritty/chicago95.toml", # tokyo-night theme (default)
 ]
 
 [env]
@@ -21,12 +22,12 @@ shape = "Block"
 
 # dir
 [font]
-size = 13
+size = 12
 
 [font.normal]
-# family = "BigBlueTermPlus Nerd Font"
+family = "BigBlueTermPlus Nerd Font"
 # family = "FiraCode"
-family = "JetBrainsMono Nerd Font"
+# family = "JetBrainsMono Nerd Font"
 style = "Medium"
 
 [terminal]
