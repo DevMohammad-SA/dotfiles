@@ -1,4 +1,3 @@
-zmodload zsh/zprof
 # MOTD 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 ~/.scripts/motd.sh
@@ -128,5 +127,4 @@ alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="$HOME/.npm-global/bin:$PATH"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
-zprof
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
