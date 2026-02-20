@@ -26,52 +26,51 @@ echo ""
 
 # Function to print colored output
 print_success() {
-    echo -e "${GREEN}✓${NC} $1"
+  echo -e "${GREEN}✓${NC} $1"
 }
 
 print_error() {
-    echo -e "${RED}✗${NC} $1"
+  echo -e "${RED}✗${NC} $1"
 }
 
 print_info() {
-    echo -e "${BLUE}→${NC} $1"
+  echo -e "${BLUE}→${NC} $1"
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠${NC} $1"
+  echo -e "${YELLOW}⚠${NC} $1"
 }
 
 # Function to backup existing files
 backup_if_exists() {
-    local file=$1
-    if [ -e "$file" ] || [ -L "$file" ]; then
-        mkdir -p "$BACKUP_DIR"
-        print_warning "Backing up existing $file to $BACKUP_DIR"
-        mv "$file" "$BACKUP_DIR/"
-        return 0
-    fi
-    return 1
+  local file=$1
+  if [ -e "$file" ] || [ -L "$file" ]; then
+    mkdir -p "$BACKUP_DIR"
+    print_warning "Backing up existing $file to $BACKUP_DIR"
+    mv "$file" "$BACKUP_DIR/"
+  fi
+  return 0
 }
 
 # Function to create symlink
 create_symlink() {
-    local source=$1
-    local target=$2
-    
-    # Create parent directory if it doesn't exist
-    mkdir -p "$(dirname "$target")"
-    
-    # Backup existing file/link if it exists
-    backup_if_exists "$target"
-    
-    # Create the symlink
-    ln -sf "$source" "$target"
-    
-    if [ $? -eq 0 ]; then
-        print_success "Linked $target"
-    else
-        print_error "Failed to link $target"
-    fi
+  local source=$1
+  local target=$2
+
+  # Create parent directory if it doesn't exist
+  mkdir -p "$(dirname "$target")"
+
+  # Backup existing file/link if it exists
+  backup_if_exists "$target"
+
+  # Create the symlink
+  ln -sf "$source" "$target"
+
+  if [ $? -eq 0 ]; then
+    print_success "Linked $target"
+  else
+    print_error "Failed to link $target"
+  fi
 }
 
 echo -e "${BLUE}Step 1: Creating symbolic links${NC}"
@@ -79,38 +78,38 @@ echo ""
 
 # Neovim
 if [ -d "$DOTFILES_DIR/nvim/.config/nvim" ]; then
-    print_info "Setting up Neovim..."
-    create_symlink "$DOTFILES_DIR/nvim/.config/nvim" "$HOME/.config/nvim"
+  print_info "Setting up Neovim..."
+  create_symlink "$DOTFILES_DIR/nvim/.config/nvim" "$HOME/.config/nvim"
 fi
 
 # Alacritty
 if [ -d "$DOTFILES_DIR/alacritty/.config/alacritty" ]; then
-    print_info "Setting up Alacritty..."
-    create_symlink "$DOTFILES_DIR/alacritty/.config/alacritty" "$HOME/.config/alacritty"
+  print_info "Setting up Alacritty..."
+  create_symlink "$DOTFILES_DIR/alacritty/.config/alacritty" "$HOME/.config/alacritty"
 fi
 
 # Ghostty
 if [ -d "$DOTFILES_DIR/ghostty" ]; then
-    print_info "Setting up Ghostty..."
-    create_symlink "$DOTFILES_DIR/ghostty" "$HOME/.config/ghostty"
+  print_info "Setting up Ghostty..."
+  create_symlink "$DOTFILES_DIR/ghostty" "$HOME/.config/ghostty"
 fi
 
 # Tmux
 if [ -f "$DOTFILES_DIR/tmux/.tmux.conf" ]; then
-    print_info "Setting up Tmux..."
-    create_symlink "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
+  print_info "Setting up Tmux..."
+  create_symlink "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
 fi
 
 # Zsh
 if [ -f "$DOTFILES_DIR/zsh/.zshrc" ]; then
-    print_info "Setting up Zsh..."
-    create_symlink "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
+  print_info "Setting up Zsh..."
+  create_symlink "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
 fi
 
 # Vim
 if [ -f "$DOTFILES_DIR/vimrc/.vimrc" ]; then
-    print_info "Setting up Vim..."
-    create_symlink "$DOTFILES_DIR/vimrc/.vimrc" "$HOME/.vimrc"
+  print_info "Setting up Vim..."
+  create_symlink "$DOTFILES_DIR/vimrc/.vimrc" "$HOME/.vimrc"
 fi
 
 echo ""
@@ -119,21 +118,21 @@ echo ""
 
 # Check if Oh My Zsh is installed
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    print_warning "Oh My Zsh is not installed"
-    echo -e "  Install with: ${YELLOW}sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"${NC}"
+  print_warning "Oh My Zsh is not installed"
+  echo -e "  Install with: ${YELLOW}sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"${NC}"
 fi
 
 # Check if Tmux Plugin Manager is installed
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-    print_warning "Tmux Plugin Manager (TPM) is not installed"
-    echo -e "  Install with: ${YELLOW}git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm${NC}"
-    echo -e "  Then in tmux, press: ${YELLOW}prefix + I${NC} (capital i) to install plugins"
+  print_warning "Tmux Plugin Manager (TPM) is not installed"
+  echo -e "  Install with: ${YELLOW}git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm${NC}"
+  echo -e "  Then in tmux, press: ${YELLOW}prefix + I${NC} (capital i) to install plugins"
 fi
 
 # Check if Neovim is installed
-if ! command -v nvim &> /dev/null; then
-    print_warning "Neovim is not installed"
-    echo -e "  Install Neovim from: ${YELLOW}https://neovim.io/${NC}"
+if ! command -v nvim &>/dev/null; then
+  print_warning "Neovim is not installed"
+  echo -e "  Install Neovim from: ${YELLOW}https://neovim.io/${NC}"
 fi
 
 echo ""
@@ -143,9 +142,9 @@ echo -e "${GREEN}================================${NC}"
 echo ""
 
 if [ -d "$BACKUP_DIR" ]; then
-    echo -e "Your old configurations have been backed up to:"
-    echo -e "${YELLOW}$BACKUP_DIR${NC}"
-    echo ""
+  echo -e "Your old configurations have been backed up to:"
+  echo -e "${YELLOW}$BACKUP_DIR${NC}"
+  echo ""
 fi
 
 echo -e "Next steps:"
