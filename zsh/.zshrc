@@ -9,6 +9,11 @@ alias debian='ssh mohammad@192.168.100.110'
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+# ssh-agent 
+if ! pgrep -u $USER ssh-agent > /dev/null; then
+  eval$("ssh-agent -s")
+fi
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 # Default editor
