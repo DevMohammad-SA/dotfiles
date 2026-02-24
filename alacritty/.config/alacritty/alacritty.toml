@@ -7,8 +7,8 @@ general.import = [
   # "~/dotfiles/alacritty/moonfly-default.toml",  # moonfly theme
   # "~/dotfiles/alacritty/gruvbox-dark-soft-contrast.toml",  # gruvbox theme
   # "~/dotfiles/alacritty/cyberdream.toml",  # cyberdream theme
-  # "~/dotfiles/alacritty/tokyo-night.toml",  # tokyo-night theme (default)
-  "~/dotfiles/alacritty/chicago95.toml", # tokyo-night theme (default)
+  "~/dotfiles/alacritty/tokyo-night.toml", # tokyo-night theme (default)
+  # "~/dotfiles/alacritty/chicago95.toml", # tokyo-night theme (default)
 ]
 
 [env]
