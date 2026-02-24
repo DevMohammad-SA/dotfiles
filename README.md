@@ -13,15 +13,9 @@ A curated collection of configuration files for my personal development environm
 ## Quick Start
 
 ```bash
-# Clone the repository
 git clone https://github.com/DevMohammad-SA/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-
-# Run the installation script
-chmod +x install.sh
-./install.sh
-
-# Restart your terminal
+stow */
 ```
 
 ## What's Included
@@ -58,35 +52,13 @@ dotfiles/
    cd ~/.dotfiles
    ```
 
-2. **(Optional) Backup existing configurations**
+2. **Stow all packages**
    ```bash
-   chmod +x backup.sh
-   ./backup.sh
+   stow */
    ```
-
-3. **Run the installation script**
+   Or stow individual packages:
    ```bash
-   chmod +x install.sh
-   ./install.sh
-   ```
-   
-   Or manually create symbolic links:
-   ```bash
-   # Backup existing configs (recommended)
-   mkdir -p ~/.config_backup
-   cp -r ~/.config/nvim ~/.config_backup/ 2>/dev/null || true
-   cp ~/.bashrc ~/.config_backup/ 2>/dev/null || true
-   cp ~/.zshrc ~/.config_backup/ 2>/dev/null || true
-   cp ~/.tmux.conf ~/.config_backup/ 2>/dev/null || true
-   
-   # Create symbolic links
-   ln -sf ~/.dotfiles/nvim/.config/nvim ~/.config/nvim
-   ln -sf ~/.dotfiles/alacritty/.config/alacritty ~/.config/alacritty
-   ln -sf ~/.dotfiles/ghostty ~/.config/ghostty
-   ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
-   ln -sf ~/.dotfiles/bash/.bashrc ~/.bashrc
-   ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
-   ln -sf ~/.dotfiles/vimrc/.vimrc ~/.vimrc
+   stow alacritty bash ghostty nvim tmux vimrc zsh
    ```
 
 ## Features
@@ -97,13 +69,14 @@ dotfiles/
 - **Dual Shell Support**: Fully configured Bash (with ble.sh) and Zsh (with Oh My Zsh) environments
 - **Productivity Tools**: Terminal multiplexing with tmux, efficient shell environments
 - **Cross-terminal Support**: Configurations for both Alacritty and Ghostty terminal emulators
-- **Easy Installation**: Automated installation script for quick setup
+- **Easy Installation**: One-command setup with GNU Stow
 
 ## Requirements
 
 ### Essential
 - Linux or macOS
 - Git
+- GNU Stow
 - Bash or Zsh (shell)
 - Neovim (>= 0.8.0)
 
@@ -131,87 +104,6 @@ To switch themes, edit the import line in `alacritty/.config/alacritty/alacritty
 
 Feel free to fork this repository and modify the configurations to suit your needs. Each configuration directory contains settings that can be independently customized.
 
-## Individual Configuration Docs
-
-- [Neovim Setup](nvim/.config/nvim/README.md) - LazyVim configuration details
-- [Tmux Configuration](tmux/README.md) - Plugin setup and keybindings
-- [Bash Configuration](bash/README.md) - ble.sh setup, completions, and customization guide
-- [Zsh Configuration](zsh/README.md) - Plugins and customization guide
-- [Alacritty Themes](alacritty/README.md) - Theme selection and customization
-
-## Troubleshooting
-
-### Fonts not displaying correctly
-Install a Nerd Font for proper icon display:
-```bash
-# On macOS with Homebrew
-brew tap homebrew/cask-fonts
-brew install --cask font-jetbrains-mono-nerd-font
-
-# On Linux (Arch)
-yay -S ttf-jetbrains-mono-nerd
-
-# On Linux (Ubuntu/Debian)
-# Download from https://www.nerdfonts.com/font-downloads
-```
-
-### Tmux plugins not loading
-Initialize TPM (Tmux Plugin Manager):
-```bash
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# Then in tmux, press: prefix + I (capital i)
-```
-
-### Bash auto-suggestions / syntax highlighting not working
-Install ble.sh for Bash:
-```bash
-git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git
-make -C ble.sh install PREFIX=~/.local
-```
-Install bash-completion:
-```bash
-# On Debian/Ubuntu
-sudo apt install bash-completion
-
-# On Fedora/RHEL
-sudo dnf install bash-completion
-
-# On macOS (Homebrew)
-brew install bash-completion@2
-
-# On Arch
-sudo pacman -S bash-completion
-```
-
-### Zsh plugins missing
-Install Oh My Zsh and required plugins:
-```bash
-# Install Oh My Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# Install zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-# Install zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
-
-### Theme not applying in Alacritty
-Update the import path in `alacritty/.config/alacritty/alacritty.toml` to match your dotfiles location:
-```toml
-general.import = [
-  "~/.dotfiles/alacritty/tokyo-night.toml",  # Update path as needed
-]
-```
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contributing
-
-While these are personal dotfiles, suggestions and improvements are welcome! Feel free to open an issue or submit a pull request.
-
----
-
-**Note**: These configurations are tailored for my personal workflow. Please review and test configurations before applying them to your system.
+MIT License - see the [LICENSE](LICENSE) file for details.
