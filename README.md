@@ -13,15 +13,9 @@ A curated collection of configuration files for my personal development environm
 ## Quick Start
 
 ```bash
-# Clone the repository
 git clone https://github.com/DevMohammad-SA/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-
-# Run the installation script
-chmod +x install.sh
-./install.sh
-
-# Restart your terminal
+stow */
 ```
 
 ## What's Included
@@ -58,35 +52,13 @@ dotfiles/
    cd ~/.dotfiles
    ```
 
-2. **(Optional) Backup existing configurations**
+2. **Stow all packages**
    ```bash
-   chmod +x backup.sh
-   ./backup.sh
+   stow */
    ```
-
-3. **Run the installation script**
+   Or stow individual packages:
    ```bash
-   chmod +x install.sh
-   ./install.sh
-   ```
-   
-   Or manually create symbolic links:
-   ```bash
-   # Backup existing configs (recommended)
-   mkdir -p ~/.config_backup
-   cp -r ~/.config/nvim ~/.config_backup/ 2>/dev/null || true
-   cp ~/.bashrc ~/.config_backup/ 2>/dev/null || true
-   cp ~/.zshrc ~/.config_backup/ 2>/dev/null || true
-   cp ~/.tmux.conf ~/.config_backup/ 2>/dev/null || true
-   
-   # Create symbolic links
-   ln -sf ~/.dotfiles/nvim/.config/nvim ~/.config/nvim
-   ln -sf ~/.dotfiles/alacritty/.config/alacritty ~/.config/alacritty
-   ln -sf ~/.dotfiles/ghostty ~/.config/ghostty
-   ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
-   ln -sf ~/.dotfiles/bash/.bashrc ~/.bashrc
-   ln -sf ~/.dotfiles/zsh/.zshrc ~/.zshrc
-   ln -sf ~/.dotfiles/vimrc/.vimrc ~/.vimrc
+   stow alacritty bash ghostty nvim tmux vimrc zsh
    ```
 
 ## Features
@@ -97,13 +69,14 @@ dotfiles/
 - **Dual Shell Support**: Fully configured Bash (with ble.sh) and Zsh (with Oh My Zsh) environments
 - **Productivity Tools**: Terminal multiplexing with tmux, efficient shell environments
 - **Cross-terminal Support**: Configurations for both Alacritty and Ghostty terminal emulators
-- **Easy Installation**: Automated installation script for quick setup
+- **Easy Installation**: One-command setup with GNU Stow
 
 ## Requirements
 
 ### Essential
 - Linux or macOS
 - Git
+- GNU Stow
 - Bash or Zsh (shell)
 - Neovim (>= 0.8.0)
 
