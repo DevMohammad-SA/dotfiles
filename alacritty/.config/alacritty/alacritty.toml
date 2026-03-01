@@ -4,9 +4,9 @@ general.import = [
   # "~/.config/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
   # "~/.config/alacritty/moonfly-default.toml",  # moonfly theme
   # "~/.config/alacritty/gruvbox-dark-soft-contrast.toml",  # gruvbox theme
-  # "~/.config/alacritty/cyberdream.toml",  # cyberdream theme
-  "~/.config/alacritty/tokyo-night.toml", # tokyo-night theme (default)
-  # "~/.config/alacritty/chicago95.toml",  # chicago95 theme
+  "~/.config/alacritty/cyberdream.toml", # cyberdream theme
+  # "~/.config/alacritty/tokyo-night.toml", # tokyo-night theme (default)
+  # "~/.config/alacritty/chicago95.toml", # chicago95 theme
 ]
 
 [env]
@@ -25,8 +25,8 @@ size = 14
 [font.normal]
 # family = "BigBlueTermPlus Nerd Font"
 # family = "FiraCode"
-family = "JetBrainsMono Nerd Font"
-style = "SemiBold"
+family = "DepartureMono Nerd Font"
+style = "Regular"
 
 [terminal]
 [terminal.shell]

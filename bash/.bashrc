@@ -1,74 +1,158 @@
-#
-# ~/.bashrc
-#
-
-# If not running interactively, don't do anything
+# Exit if not interactive
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-# ─── Enable Colors ───────────────────────────────────────────
-export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+# ─────────────────────────────────────────────
+# Color detection
+# Disable if terminal doesn't support it
+# ─────────────────────────────────────────────
 
-# Force color support
-if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+__USE_COLOR=1
+
+[[ -n "${NO_COLOR:-}" ]] && __USE_COLOR=0
+[[ "${TERM:-}" == "dumb" ]] && __USE_COLOR=0
+
+# ─────────────────────────────────────────────
+# LS colors
+# ─────────────────────────────────────────────
+
+if command -v dircolors >/dev/null 2>&1; then
+  eval "$(dircolors -b)"
 fi
 
-# ─── Colorized Aliases ──────────────────────────────────────
+# ─────────────────────────────────────────────
+# SSH Agent
+# ─────────────────────────────────────────────
+
+if [[ -z "$SSH_AUTH_SOCK" ]] && ! pgrep -u "$USER" ssh-agent >/dev/null 2>&1; then
+  eval "$(ssh-agent -s)" >/dev/null
+fi
+export KEYTIMEOUT=40
+# ─────────────────────────────────────────────
+# Aliases
+# ─────────────────────────────────────────────
+
 alias ls='ls --color=auto'
 alias ll='ls -lAh --color=auto'
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 alias diff='diff --color=auto'
-alias ip='ip -color=auto'
-alias eza='eza --icons --group-directories-first'
-alias ezaf='eza -lh --icons --group-directories-first'
-alias ezaa='eza -lha --icons --group-directories-first'
-alias tree='eza --tree --icons'
 
-# ─── Fancy Color Prompt ─────────────────────────────────────
-# Format: [user@host ~/path] (git-branch) $
-parse_git_branch() {
-  git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+# Optional modern ls
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza --group-directories-first'
+  alias ll='eza -lh --group-directories-first'
+  alias tree='eza --tree'
+fi
+
+# ─────────────────────────────────────────────
+# Get local IP
+# ─────────────────────────────────────────────
+
+__prompt_ip() {
+
+  command -v ip >/dev/null 2>&1 || return
+
+  local ip
+
+  ip=$(ip route get 1.1.1.1 2>/dev/null | awk '{print $7; exit}')
+
+  [[ -z "$ip" ]] && return
+
+  if [[ $__USE_COLOR == 1 ]]; then
+    printf " \033[35m%s\033[0m" "$ip"
+  else
+    printf " %s" "$ip"
+  fi
 }
 
-export PS1="\[\033[01;32m\][\u@\h]\[\033[00m\]:\[\033[01;34m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n$ "
+# ─────────────────────────────────────────────
+# Git branch display
+# ─────────────────────────────────────────────
 
-# ─── Colored Man Pages ──────────────────────────────────────
-export LESS_TERMCAP_mb=$'\e[1;31m'
-export LESS_TERMCAP_md=$'\e[1;36m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;32m'
+__prompt_git() {
 
-# ─── Enhanced Tab Completion ─────────────────────────────────
-# Case-insensitive completion
+  command -v git >/dev/null 2>&1 || return
+
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 || return
+
+  local branch dirty=""
+
+  branch=$(git symbolic-ref --short HEAD 2>/dev/null ||
+    git rev-parse --short HEAD 2>/dev/null)
+
+  if ! git diff --quiet 2>/dev/null ||
+    ! git diff --cached --quiet 2>/dev/null ||
+    [[ -n $(git ls-files --others --exclude-standard 2>/dev/null) ]]; then
+    dirty="*"
+  fi
+
+  if [[ $__USE_COLOR == 1 ]]; then
+
+    if [[ -n "$dirty" ]]; then
+      printf " (\033[36m%s\033[31m%s\033[0m)" "$branch" "$dirty"
+    else
+      printf " (\033[36m%s\033[0m)" "$branch"
+    fi
+
+  else
+
+    printf " (%s%s)" "$branch" "$dirty"
+
+  fi
+}
+
+# ─────────────────────────────────────────────
+# Prompt symbol
+# Blue success, Red failure
+# ─────────────────────────────────────────────
+
+__prompt_symbol() {
+
+  if [[ $__USE_COLOR == 1 ]]; then
+
+    if [[ $? == 0 ]]; then
+      printf "\033[34m$\033[0m "
+    else
+      printf "\033[31m$\033[0m "
+    fi
+
+  else
+
+    printf "$ "
+
+  fi
+}
+
+# ─────────────────────────────────────────────
+# Main prompt
+# Format:
+#
+# user@host IP:path (git)
+# $
+# ─────────────────────────────────────────────
+
+if [[ $__USE_COLOR == 1 ]]; then
+
+  PS1="\[\033[36m\]\u@\h\[\033[0m\]\$(__prompt_ip):\[\033[34m\]\w\[\033[0m\]\$(__prompt_git)
+\$(__prompt_symbol)"
+
+else
+
+  PS1="\u@\h\$(__prompt_ip):\w\$(__prompt_git)
+\$ "
+
+fi
+
+export PS1
+
+# ─────────────────────────────────────────────
+# Completion
+# ─────────────────────────────────────────────
+
 bind "set completion-ignore-case on"
-
-# Show all matches on ambiguous completion (no double-tab needed)
 bind "set show-all-if-ambiguous on"
 
-# Treat hyphens and underscores as equivalent
-bind "set completion-map-case on"
-
-# Color completion results (like ls)
-bind "set colored-stats on"
-
-# Append a slash to completed directory names
-bind "set mark-directories on"
-bind "set mark-symlinked-directories on"
-
-# Show file type indicator in completions (like ls -F)
-bind "set visible-stats on"
-
-# Enable bash-completion package (if installed)
-if [ -f /usr/share/bash-completion/bash_completion ]; then
+if [[ -r /usr/share/bash-completion/bash_completion ]]; then
   . /usr/share/bash-completion/bash_completion
-elif [ -f /etc/bash_completion ]; then
+elif [[ -r /etc/bash_completion ]]; then
   . /etc/bash_completion
 fi
