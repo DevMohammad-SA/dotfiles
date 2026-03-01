@@ -33,7 +33,7 @@ compinit -C
 if [[ -z "$SSH_AUTH_SOCK" ]] && ! pgrep -u "$USER" ssh-agent >/dev/null 2>&1; then
   eval "$(ssh-agent -s)" >/dev/null
 fi
-
+export KEYTIMEOUT=40   
 # ---- Plugins (no OMZ) ----
 # Install these via pacman (see below), then source them:
 [[ -r /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && \
