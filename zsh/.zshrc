@@ -44,4 +44,35 @@ export KEYTIMEOUT=40
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ---- Prompt ----
-eval "$(starship init zsh)"
+venv_prompt() {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    echo "[$(basename $VIRTUAL_ENV)] "
+  fi
+}
+
+
+git_prompt() {
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    local branch dirty
+
+    branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD)
+
+    if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
+      dirty=" %F{red}*%f"
+    fi
+
+    echo "[$branch$dirty] "
+  fi
+}
+
+ip_prompt() {
+  ip=$(ip route get 1 | awk '{print $7; exit}')
+  echo "$ip"
+}
+
+autoload -U colors && colors
+setopt PROMPT_SUBST
+
+PROMPT='%F{green}$(venv_prompt)%f%F{cyan}%n@%m%f %F{blue}%~%f $(git_prompt)%f %F{white}$(ip_prompt)%f
+%# '
+#eval "$(starship init zsh)"
