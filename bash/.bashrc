@@ -35,6 +35,10 @@ alias ls='ls --color=auto'
 alias ll='ls -lAh --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
+alias eza='eza --icons --group-directories-first'
+alias ezaf='eza -lh --icons --group-directories-first'
+alias ezaa='eza -lha --icons --group-directories-first'
+alias tree='eza --tree --icons'
 
 # Optional modern ls
 if command -v eza >/dev/null 2>&1; then
