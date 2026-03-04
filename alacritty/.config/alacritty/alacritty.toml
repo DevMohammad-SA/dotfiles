@@ -24,9 +24,9 @@ size = 14
 
 [font.normal]
 # family = "BigBlueTermPlus Nerd Font"
-# family = "FiraCode"
-family = "DepartureMono Nerd Font"
-style = "Regular"
+family = "FiraCode"
+# family = "DepartureMono Nerd Font"
+style = "SemiBold"
 
 [terminal]
 [terminal.shell]
