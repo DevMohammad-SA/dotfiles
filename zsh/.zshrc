@@ -12,12 +12,31 @@ else
   export EDITOR='nvim'
 fi
 
+# ---- Keybindings ----
+bindkey -e
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
 # ---- Aliases ----
+alias zshconfig="$EDITOR ~/.zshrc"
+
+alias ls='ls --color=auto'
+alias ll='ls -lAh --color=auto'
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
 alias eza='eza --icons --group-directories-first'
 alias ezaf='eza -lh --icons --group-directories-first'
 alias ezaa='eza -lha --icons --group-directories-first'
 alias tree='eza --tree --icons'
-alias zshconfig="$EDITOR ~/.zshrc"
+
+# Optional modern ls
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza --group-directories-first'
+  alias ll='eza -lh --group-directories-first'
+  alias tree='eza --tree'
+fi
 
 # ---- History ----
 HISTSIZE=5000
@@ -34,8 +53,51 @@ if [[ -z "$SSH_AUTH_SOCK" ]] && ! pgrep -u "$USER" ssh-agent >/dev/null 2>&1; th
   eval "$(ssh-agent -s)" >/dev/null
 fi
 export KEYTIMEOUT=40   
+# ---- Prompt ----
+autoload -U colors && colors
+setopt PROMPT_SUBST
+venv_prompt() {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    echo "[$(basename $VIRTUAL_ENV)] "
+  fi
+}
+git_prompt() {
+  command -v git >/dev/null 2>&1 || return
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 || return
+
+  local branch dirty=""
+
+  branch=$(git symbolic-ref --short HEAD 2>/dev/null ||
+           git rev-parse --short HEAD 2>/dev/null)
+
+  if ! git diff --quiet 2>/dev/null ||
+     ! git diff --cached --quiet 2>/dev/null ||
+     [[ -n $(git ls-files --others --exclude-standard 2>/dev/null) ]]; then
+    dirty="*"
+  fi
+
+    if [[ -n "$dirty" ]]; then
+      echo " %K{238}%F{cyan}[${branch}%F{red}${dirty}%F{cyan}]%f%k"
+    else
+      echo " %K{238}%F{cyan}[${branch}] %f%k"
+    fi
+}
+ip_prompt() {
+  ip=$(ip route get 1 | awk '{print $7; exit}')
+  echo "$ip"
+}
+
+
+PROMPT='%F{green}$(venv_prompt)%f\
+%F{cyan}%n@%m%f \
+%F{blue}%~%f$(git_prompt) \
+%F{white}$(ip_prompt)%f
+%# '
+
+#eval "$(starship init zsh)"
+
+
 # ---- Plugins (no OMZ) ----
-# Install these via pacman (see below), then source them:
 [[ -r /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && \
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -43,36 +105,3 @@ export KEYTIMEOUT=40
 [[ -r /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && \
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# ---- Prompt ----
-venv_prompt() {
-  if [[ -n "$VIRTUAL_ENV" ]]; then
-    echo "[$(basename $VIRTUAL_ENV)] "
-  fi
-}
-
-
-git_prompt() {
-  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    local branch dirty
-
-    branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD)
-
-    if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
-      dirty=" %F{red}*%f"
-    fi
-
-    echo "[$branch$dirty] "
-  fi
-}
-
-ip_prompt() {
-  ip=$(ip route get 1 | awk '{print $7; exit}')
-  echo "$ip"
-}
-
-autoload -U colors && colors
-setopt PROMPT_SUBST
-
-PROMPT='%F{green}$(venv_prompt)%f%F{cyan}%n@%m%f %F{blue}%~%f $(git_prompt)%f %F{white}$(ip_prompt)%f
-%# '
-#eval "$(starship init zsh)"
