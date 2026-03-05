@@ -29,8 +29,12 @@ family = "FiraCode"
 style = "SemiBold"
 
 [terminal]
-[terminal.shell]
-program = "/bin/zsh"
+shell.program = "/usr/bin/zsh"
+
+[bell]
+animation = "EaseOutExpo"
+duration = 150
+color = "#cccccc"
 
 [window]
 decorations = "full"
@@ -46,4 +50,8 @@ y = 5
 
 # Keybindings
 [keyboard]
-bindings = [{ key = "`", mods = "Control", action = "ToggleFullscreen" }]
+bindings = [
+  { key = "`", mods = "Control", action = "ToggleFullscreen" },
+  { key = "q", mods = "Control", action = "Quit" },
+  { key = "t", mods = "Control", action = "CreateNewTab" },
+]
