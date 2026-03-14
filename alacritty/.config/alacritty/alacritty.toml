@@ -1,12 +1,14 @@
 general.import = [
   # Uncomment the theme you want to use
 
-  # "~/.config/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
-  # "~/.config/alacritty/moonfly-default.toml",  # moonfly theme
+  "~/.config/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
+  # "~/.config/alacritty/moonfly-default.toml", # moonfly theme
   # "~/.config/alacritty/gruvbox-dark-soft-contrast.toml",  # gruvbox theme
-  "~/.config/alacritty/cyberdream.toml", # cyberdream theme
+  # "~/.config/alacritty/cyberdream.toml", # cyberdream theme
   # "~/.config/alacritty/tokyo-night.toml", # tokyo-night theme (default)
   # "~/.config/alacritty/chicago95.toml", # chicago95 theme
+  # "~/.config/alacritty/ayu_dark.toml", # ayu-dark theme
+  # "~/.config/alacitty/aura.toml", # aura theme
 ]
 
 [env]
@@ -20,13 +22,23 @@ shape = "Block"
 
 # dir
 [font]
-size = 14
+size = 14.00
 
 [font.normal]
-# family = "BigBlueTermPlus Nerd Font"
-family = "FiraCode"
-# family = "DepartureMono Nerd Font"
-style = "SemiBold"
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
 
 [terminal]
 shell.program = "/usr/bin/zsh"
