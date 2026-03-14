@@ -1,0 +1,146 @@
+/* Import the Mocha color palette */
+@import "mocha.css";
+
+/* Reset and Global Styles */
+* {
+    font-family: "JetBrainsMono Nerd Font", "Roboto", sans-serif;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(30, 30, 46, 0.8); /* Semi-transparent base */
+    color: @text;
+}
+
+/* Tooltip Styling */
+tooltip {
+    background: @base;
+    border: 1px solid @lavender;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @text;
+    padding: 5px;
+}
+
+/* Workspace Pill Layout */
+#workspaces {
+    background-color: @surface0;
+    margin: 4px 8px;
+    border-radius: 10px;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    color: @blue;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.focused {
+    color: @base;
+    background-color: @blue;
+    border-radius: 10px;
+}
+
+#workspaces button:hover {
+    background-color: @surface1;
+    color: @text;
+}
+
+/* Individual Module Pill Styling */
+#clock,
+#pulseaudio,
+#memory,
+#cpu,
+#disk,
+#backlight,
+#network,
+#language,
+#tray {
+    padding: 0 12px;
+    margin: 4px 6px;
+    border-radius: 10px;
+    background-color: @surface0;
+    transition: background-color 0.2s ease;
+}
+
+/* Specific ID selectors for Dual Battery setup */
+#battery.bat0, 
+#battery.bat1 {
+    padding: 0 12px;
+    margin: 4px 6px;
+    border-radius: 10px;
+    background-color: @surface0;
+    transition: background-color 0.2s ease;
+}
+
+/* Global Hover Effect for all modules */
+#clock:hover,
+#pulseaudio:hover,
+#memory:hover,
+#cpu:hover,
+#disk:hover,
+#backlight:hover,
+#network:hover,
+#language:hover,
+#battery.bat0:hover,
+#battery.bat1:hover {
+    background-color: @surface1;
+}
+
+/* Specific Module Coloring */
+#clock {
+    color: @lavender;
+    background-color: @base;
+    font-weight: bold;
+}
+
+#cpu { color: @mauve; }
+#memory { color: @peach; }
+#disk { color: @maroon; }
+#pulseaudio { color: @sapphire; }
+#backlight { color: @yellow; }
+#network { color: @pink; }
+#language { color: @sky; }
+
+/* Differentiating the Dual Batteries */
+#battery.bat0 { color: @green; }  /* Internal */
+#battery.bat1 { color: @sky; }    /* External */
+#battery.charging { color: @orange; }
+
+/* Alert states for when things get heavy or low */
+#cpu.warning, 
+#memory.warning,
+#disk.warning { 
+    color: @orange; 
+}
+
+#cpu.critical, 
+#memory.critical, 
+#disk.critical,
+#battery.bat0.critical:not(.charging),
+#battery.bat1.critical:not(.charging) {
+    background-color: @red;
+    color: @base;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#tray {
+    margin-right: 8px;
+}
+
+/* Animations */
+@keyframes blink {
+    to {
+        background-color: @surface0;
+        color: @red;
+    }
+}

@@ -1,0 +1,95 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["clock"],
+    "modules-right": [
+        "sway/language",
+        "cpu",
+        "memory",
+        "disk",
+        "pulseaudio", 
+        "backlight", 
+        "battery#bat0", 
+        "battery#bat1", 
+        "network", 
+        "tray"
+    ],
+
+    "sway/workspaces": {
+        "format": "{name}",
+        "disable-scroll": true
+    },
+
+    "sway/language": {
+        "format": "  {}",
+        "min-length": 5,
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "  {:%I:%M %p}",
+        "tooltip-format": "<tt>{calendar}</tt>"
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}%",
+        "states": { "warning": 70, "critical": 90 },
+        "on-click": "foot htop"
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": " {used:0.1f}G",
+        "states": { "warning": 80, "critical": 90 }
+    },
+
+    "disk": {
+        "interval": 60,
+        "path": "/",
+        "format": " {percentage_used}%"
+    },
+
+    "battery#bat0": {
+        "bat": "BAT0",
+        "interval": 10,
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "battery#bat1": {
+        "bat": "BAT1",
+        "interval": 10,
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "⚠ Offline"
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃠"]
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": { "default": ["", "", ""] },
+        "on-click": "pavucontrol"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    }
+}
