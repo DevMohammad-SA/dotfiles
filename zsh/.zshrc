@@ -48,7 +48,6 @@ autoload -Uz compinit
 # Use cached completion dump; rebuild only if needed
 compinit -C
 
-# ---- ssh-agent (optional; keep if you use it) ----
 if [[ -z "$SSH_AUTH_SOCK" ]] && ! pgrep -u "$USER" ssh-agent >/dev/null 2>&1; then
   eval "$(ssh-agent -s)" >/dev/null
 fi

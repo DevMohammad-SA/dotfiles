@@ -47,14 +47,18 @@ title              = "Ghostty"
 # options: auto, none, client, server
 window-decoration  = auto
 window-theme       = ghostty
-font-family        = "JetBrainsMono NF Bold"
+font-family        = "FiraCode Nerd Font Mono"
 font-size          = 14
 cursor-style       = block
+shell-integration-features = no-cursor
 # block, underline, block_hollow, bar 
 
 
 # Keybindings
-keybind = global:ctrl+alt+q=toggle_quick_terminal
+keybind = global:ctrl+alt+q=toggle_quick_terminal 
+keybind = ctrl+`=toggle_fullscreen
+keybind = ctrl+d=close_window
+
 #Moonfly theme:
 background-opacity = 0.50
 background-blur    = true
