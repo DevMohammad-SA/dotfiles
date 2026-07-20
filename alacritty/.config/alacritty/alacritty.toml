@@ -51,8 +51,8 @@ color = "#cccccc"
 [window]
 decorations = "full"
 dynamic_padding = true
-# opacity = 0.75
-# blur = true
+opacity = 0.80
+blur = true
 startup_mode = "Windowed"
 title = "Alacritty"
 
