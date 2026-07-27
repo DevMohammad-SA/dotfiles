@@ -25,20 +25,20 @@ shape = "Block"
 size = 18
 
 [font.normal]
-family = "TerminessNerdFontMono"
+family = "Caskaydia Cove Nerd Font"
 style = "Regular"
 
 [font.bold]
-family = "TerminessNerdFontMono"
+family = "Caskaydia Cove Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "TerminessNerdFontMono"
+family = "Caskaydia Cove Nerd Font"
 style = "Italic"
 
 [font.bold_italic]
-family = "TerminessNerdFontMono"
-style = "Bold Italic"
+family = "Caskaydia Cove Nerd Font"
+style = "SemiBold"
 
 [terminal]
 shell.program = "/usr/bin/zsh"
@@ -51,8 +51,8 @@ color = "#cccccc"
 [window]
 decorations = "full"
 dynamic_padding = true
-opacity = 0.80
-blur = true
+# opacity = 0.80
+# blur = true
 startup_mode = "Windowed"
 title = "Alacritty"
 
