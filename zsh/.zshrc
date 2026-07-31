@@ -31,6 +31,7 @@ alias ezaf='eza -lh --icons --group-directories-first'
 alias ezaa='eza -lha --icons --group-directories-first'
 alias tree='eza --tree --icons'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq) 2>/dev/null; sudo pacman -Sc --noconfirm'
+alias sa='eval "$(ssh-agent -s)" && ssh-add'
 
 # Optional modern ls
 if command -v eza >/dev/null 2>&1; then
