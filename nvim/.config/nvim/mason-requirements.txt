@@ -1,0 +1,6 @@
+pyright
+lua-language-server
+stylua
+ruff
+taplo
+marksman
