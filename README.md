@@ -1,7 +1,7 @@
 # DevMohammad-SA's Dotfiles
 
 [![License](https://img.shields.io/badge/License-MIT-F59E0B?style=flat-square&logo=opensourceinitiative&logoColor=white)](./LICENSE)
-[![Stars](https://img.shields.io/github/stars/DevMohammad-SA/Twibble?style=flat-square&logo=github&logoColor=white&label=Stars&color=EAB308)](https://github.com/DevMohammad-SA/Twibble/stargazers)
+[![Stars](https://img.shields.io/github/stars/DevMohammad-SA/dotfiles?style=flat-square&logo=github&logoColor=white&label=Stars&color=EAB308)](https://github.com/DevMohammad-SA/dotfiles/stargazers)
 
 A curated collection of configuration files for my personal development environment. These dotfiles are designed for a modern Linux/macOS setup with a focus on productivity and aesthetics.
 
