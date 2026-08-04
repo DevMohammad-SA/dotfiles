@@ -33,7 +33,7 @@ set $menu wofi
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-output * bg $HOME/Pictures/wallpapers/arch-minimal-wallpapers/wallpapers/full-hd/onedark.png fill
+#output * bg $HOME/Pictures/wallpapers/arch-minimal-wallpapers/wallpapers/full-hd/onedark.png fill
 
 #
 # Example configuration:
