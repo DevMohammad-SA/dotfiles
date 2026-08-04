@@ -31,6 +31,9 @@ stow */
 - **Neovim** - Modern Vim-based editor with LazyVim configuration
 - **Vim** - Fallback editor for servers; see [vim-setup.md](./vim-setup.md) for installation
 
+### Windows Manager / Status Bar
+- **Window Manager**: Sway configuration for efficient tiling layout
+- **Status Bar**: Waybar with custom styling and system information
 ## Structure
 
 ```
