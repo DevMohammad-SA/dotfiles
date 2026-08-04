@@ -29,7 +29,7 @@ stow */
 
 ### Editors
 - **Neovim** - Modern Vim-based editor with LazyVim configuration
-- **Vim** - Classic text editor with custom vimrc
+- **Vim** - Fallback editor for servers; see [vim-setup.md](./vim-setup.md) for installation
 
 ## Structure
 
