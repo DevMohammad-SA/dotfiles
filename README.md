@@ -35,13 +35,16 @@ stow */
 
 ```
 dotfiles/
-├── alacritty/      # Terminal emulator configuration with themes
-├── bash/           # Bash shell configuration with ble.sh
-├── ghostty/        # Alternative terminal emulator config
+├── alacritty/      # Terminal emulator configuration
+├── bash/           # Bash shell configuration
+├── ghostty/        # Alternative terminal emulator
+├── kitty/          # Kitty terminal emulator
 ├── nvim/           # Neovim configuration with LazyVim
-├── tmux/           # Terminal multiplexer settings with plugins
+├── sway/           # Sway window manager
+├── tmux/           # Terminal multiplexer
 ├── vimrc/          # Classic Vim configuration
-└── zsh/            # Zsh shell configuration and themes
+├── waybar/         # Status bar configuration
+└── zsh/            # Zsh shell configuration
 ```
 
 ## Installation
