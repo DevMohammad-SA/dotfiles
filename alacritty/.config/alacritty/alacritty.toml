@@ -2,7 +2,7 @@ general.import = [
   # Uncomment the theme you want to use
 
   # "~/.config/alacritty/catppuccin-mocha.toml", # catppuccin-mocha theme
-  "~/.config/alacritty/moonfly-default.toml",  # moonfly theme
+  "~/.config/alacritty/moonfly-default.toml", # moonfly theme
   # "~/.config/alacritty/gruvbox-dark-soft-contrast.toml",  # gruvbox theme
   # "~/.config/alacritty/cyberdream.toml", # cyberdream theme
   # "~/.config/alacritty/tokyo-night.toml",  # tokyo-night theme (default)
@@ -17,27 +17,27 @@ PYTHONWARNINGS = "ignore"
 LANG = "en_US.UTF-8"
 
 [cursor.style]
-blinking = "On"  # values are =['On', 'Off', 'Always','Never']
+blinking = "On" # values are =['On', 'Off', 'Always','Never']
 shape = "Block"
 
 # dir
 [font]
-size = 18
+size = 14
 
 [font.normal]
-family = "Caskaydia Cove Nerd Font"
-style = "Regular"
+family = "JetBrainsMono Nerd Font Medium"
+style = "SemiBold"
 
 [font.bold]
-family = "Caskaydia Cove Nerd Font"
+family = "JetBrainsMono Nerd Font Medium"
 style = "Bold"
 
 [font.italic]
-family = "Caskaydia Cove Nerd Font"
+family = "JetBrainsMono Nerd Font Medium"
 style = "Italic"
 
 [font.bold_italic]
-family = "Caskaydia Cove Nerd Font"
+family = "JetBrainsMono Nerd Font Medium"
 style = "SemiBold"
 
 [terminal]
