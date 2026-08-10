@@ -108,3 +108,4 @@ PROMPT='%F{green}$(venv_prompt)%f\
 
 
 . "$HOME/.local/bin/env"
+export PATH="$HOME/.cargo/bin:$PATH"
