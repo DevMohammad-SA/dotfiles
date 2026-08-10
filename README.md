@@ -23,8 +23,9 @@ stow */
 ### Terminal & Shell
 - **Alacritty** - GPU-accelerated terminal emulator
 - **Ghostty** - Fast, feature-rich terminal emulator
-- **Bash** - Lightweight, fast shell with ble.sh for syntax highlighting & auto-suggestions
-- **Zsh** - Extended shell with custom configurations
+- **Kitty** - GPU-accelerated terminal emulator
+- **Bash** - Lightweight, fast shell (used as the server fallback shell)
+- **Zsh** - Extended shell with zsh-autosuggestions & zsh-syntax-highlighting (no Oh My Zsh)
 - **Tmux** - Terminal multiplexer for session management
 
 ### Editors
@@ -46,7 +47,7 @@ dotfiles/
 ├── sway/           # Sway window manager
 ├── tmux/           # Terminal multiplexer
 ├── vimrc/          # Classic Vim configuration
-├── waybar/         # Status bar configuration
+├── waybar/         # Status bar configuration for Sway
 └── zsh/            # Zsh shell configuration
 ```
 
@@ -64,15 +65,15 @@ dotfiles/
    ```
    Or stow individual packages:
    ```bash
-   stow alacritty bash ghostty nvim tmux vimrc zsh
+   stow alacritty bash ghostty kitty nvim sway tmux vimrc waybar zsh
    ```
 
 ## Features
 
 - **Modern Development Environment**: Optimized for coding with syntax highlighting, autocompletion, and LSP support
-- **Multiple Themes**: Includes Catppuccin Mocha, Tokyo Night, Moonfly, Gruvbox, and Cyberdream themes
+- **Multiple Themes**: Includes Catppuccin Mocha, Tokyo Night, Moonfly, Gruvbox, Cyberdream, Aura, Ayu Dark, and Chicago95 themes
 - **Aesthetic UI**: Carefully chosen themes and color schemes for a pleasant visual experience
-- **Dual Shell Support**: Fully configured Bash (with ble.sh) and Zsh (with Oh My Zsh) environments
+- **Dual Shell Support**: Fully configured Bash and Zsh environments, each with a custom prompt
 - **Productivity Tools**: Terminal multiplexing with tmux, efficient shell environments
 - **Cross-terminal Support**: Configurations for both Alacritty and Ghostty terminal emulators
 - **Easy Installation**: One-command setup with GNU Stow
@@ -89,9 +90,8 @@ dotfiles/
 ### Optional
 - Tmux (terminal multiplexer)
 - Alacritty or Ghostty (terminal emulator)
-- [ble.sh](https://github.com/akinomyoga/ble.sh) (Bash syntax highlighting & auto-suggestions)
 - [bash-completion](https://github.com/scop/bash-completion) (enhanced Bash tab completion)
-- [Oh My Zsh](https://ohmyz.sh/) (Zsh configuration framework)
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) & [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [TPM](https://github.com/tmux-plugins/tpm) (tmux plugin manager)
 - JetBrains Mono Nerd Font (recommended font)
 
@@ -103,6 +103,7 @@ The repository includes multiple color schemes:
 - **Moonfly** - Minimalist dark theme
 - **Gruvbox** - Retro groove color scheme
 - **Cyberdream** - Futuristic theme
+- **Aura**, **Ayu Dark**, **Chicago95** - Additional Alacritty themes
 
 To switch themes, edit the import line in `alacritty/.config/alacritty/alacritty.toml`.
 

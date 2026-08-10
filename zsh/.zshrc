@@ -107,5 +107,5 @@ PROMPT='%F{green}$(venv_prompt)%f\
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-. "$HOME/.local/bin/env"
+[[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 export PATH="$HOME/.cargo/bin:$PATH"
