@@ -3,15 +3,19 @@
   "position": "top",
   "spacing": 0,
   "height": 34,
-  "margin-top": 8,
-  "margin-right": 10,
+  "margin-top": 0,
+  "margin-right": 0,
   "margin-bottom": 0,
-  "margin-left": 10,
+  "margin-left": 0,
   "modules-left": [
     "sway/workspaces"
   ],
   "modules-center": [],
   "modules-right": [
+    "custom/kblayout",
+    "cpu",
+    "memory",
+    "custom/gpu",
     "pulseaudio",
     "network",
     "custom/sep1",
@@ -34,6 +38,36 @@
   "tray": {
     "icon-size": 15,
     "spacing": 10,
+    "tooltip": false
+  },
+  "custom/kblayout": {
+    "exec": "$HOME/.config/waybar/scripts/kblayout.sh",
+    "interval": 1,
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": 5,
+    "format": " {usage}%",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 5,
+    "format": " {percentage}%",
+    "states": {
+      "warning": 80,
+      "critical": 90
+    },
+    "tooltip": false
+  },
+  "custom/gpu": {
+    "exec": "$HOME/.config/waybar/scripts/gpu.sh",
+    "format": "󰢮 {}",
+    "interval": 5,
+    "return-type": "json",
     "tooltip": false
   },
   "custom/sep1": {
