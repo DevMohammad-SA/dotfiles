@@ -1,25 +1,36 @@
-/* Import the Mocha color palette */
-@import "mocha.css";
+/* Graphite: neutral grayscale palette */
+@import "graphite.css";
 
 /* Reset and Global Styles */
 * {
     font-family: "JetBrainsMono Nerd Font", "Roboto", sans-serif;
     font-size: 13px;
+    font-weight: 500;
     border: none;
     border-radius: 0;
     min-height: 0;
 }
 
+/* One continuous floating bar, square corners, glassy translucency */
 window#waybar {
-    background: rgba(30, 30, 46, 0.8); /* Semi-transparent base */
+    background: rgba(23, 24, 27, 0.6);
     color: @text;
+    border-radius: 0;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-top-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+window#waybar > box {
+    padding: 0 12px;
+    min-height: 34px;
 }
 
 /* Tooltip Styling */
 tooltip {
-    background: @base;
-    border: 1px solid @lavender;
-    border-radius: 8px;
+    background: rgba(16, 16, 19, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
 }
 
 tooltip label {
@@ -27,120 +38,100 @@ tooltip label {
     padding: 5px;
 }
 
-/* Workspace Pill Layout */
+/* Workspaces: plain dot indicators, no boxed pill */
 #workspaces {
-    background-color: @surface0;
-    margin: 4px 8px;
-    border-radius: 10px;
+    margin: 0;
+    padding: 0 4px;
 }
 
 #workspaces button {
-    padding: 0 10px;
-    color: @blue;
-    transition: all 0.2s ease;
+    padding: 0 6px;
+    color: @overlay1;
+    background: transparent;
+    font-size: 10px;
+    transition: color 0.2s ease;
 }
 
-#workspaces button.focused {
-    color: @base;
-    background-color: @blue;
-    border-radius: 10px;
+#workspaces button.focused,
+#workspaces button.active {
+    color: @accent;
 }
 
 #workspaces button:hover {
-    background-color: @surface1;
+    color: @text;
+    background: transparent;
+    box-shadow: none;
+}
+
+#workspaces button.urgent {
+    color: @critical;
+}
+
+/* Flat modules, separated by thin custom dividers rather than boxes */
+#pulseaudio,
+#network,
+#battery,
+#clock,
+#tray {
+    padding: 0 8px;
+    background: transparent;
+    color: @subtext1;
+    transition: color 0.2s ease;
+}
+
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#clock:hover {
     color: @text;
 }
 
-/* Individual Module Pill Styling */
-#clock,
-#pulseaudio,
-#memory,
-#cpu,
-#disk,
-#backlight,
-#network,
-#language,
-#tray {
-    padding: 0 12px;
-    margin: 4px 6px;
-    border-radius: 10px;
-    background-color: @surface0;
-    transition: background-color 0.2s ease;
+#custom-sep1,
+#custom-sep2,
+#custom-sep3 {
+    color: @surface2;
+    padding: 0 2px;
+    font-size: 11px;
 }
 
-/* Specific ID selectors for Dual Battery setup */
-#battery.bat0, 
-#battery.bat1 {
-    padding: 0 12px;
-    margin: 4px 6px;
-    border-radius: 10px;
-    background-color: @surface0;
-    transition: background-color 0.2s ease;
-}
-
-/* Global Hover Effect for all modules */
-#clock:hover,
-#pulseaudio:hover,
-#memory:hover,
-#cpu:hover,
-#disk:hover,
-#backlight:hover,
-#network:hover,
-#language:hover,
-#battery.bat0:hover,
-#battery.bat1:hover {
-    background-color: @surface1;
-}
-
-/* Specific Module Coloring */
+/* Clock as the one subtle emphasis point */
 #clock {
-    color: @lavender;
-    background-color: @base;
-    font-weight: bold;
+    color: @accent;
+    font-weight: 600;
 }
 
-#cpu { color: @mauve; }
-#memory { color: @peach; }
-#disk { color: @maroon; }
-#pulseaudio { color: @sapphire; }
-#backlight { color: @yellow; }
-#network { color: @pink; }
-#language { color: @sky; }
+#battery.charging { color: @accent; }
 
-/* Differentiating the Dual Batteries */
-#battery.bat0 { color: @green; }  /* Internal */
-#battery.bat1 { color: @sky; }    /* External */
-#battery.charging { color: @orange; }
+#network.disconnected { color: @overlay1; }
+#pulseaudio.muted { color: @overlay1; }
 
-/* Alert states for when things get heavy or low */
-#cpu.warning, 
-#memory.warning,
-#disk.warning { 
-    color: @orange; 
+/* Alert states keep a muted functional color for legibility */
+#battery.warning:not(.charging) {
+    color: @warning;
 }
 
-#cpu.critical, 
-#memory.critical, 
-#disk.critical,
-#battery.bat0.critical:not(.charging),
-#battery.bat1.critical:not(.charging) {
-    background-color: @red;
-    color: @base;
+#battery.critical:not(.charging) {
+    color: @critical;
     animation-name: blink;
-    animation-duration: 0.5s;
+    animation-duration: 0.6s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
 
 #tray {
-    margin-right: 8px;
+    padding-right: 4px;
+}
+
+#tray menu {
+    background: @base;
+    border: 1px solid @surface1;
+    border-radius: 0;
 }
 
 /* Animations */
 @keyframes blink {
     to {
-        background-color: @surface0;
-        color: @red;
+        color: @text;
     }
 }

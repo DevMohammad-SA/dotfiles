@@ -1,0 +1,16 @@
+/* Graphite: neutral cool-gray palette, no hue accents */
+@define-color crust     #0a0a0c;
+@define-color mantle    #101013;
+@define-color base      #17181b;
+@define-color surface0  #202124;
+@define-color surface1  #2b2c30;
+@define-color surface2  #38393e;
+@define-color overlay0  #48494f;
+@define-color overlay1  #616268;
+@define-color overlay2  #7c7d84;
+@define-color subtext0  #9a9ba1;
+@define-color subtext1  #b5b6bb;
+@define-color text      #e6e6e9;
+@define-color accent    #f2f2f4;
+@define-color warning   #b8a06b;
+@define-color critical  #b26363;

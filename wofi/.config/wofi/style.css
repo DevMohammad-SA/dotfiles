@@ -1,0 +1,81 @@
+@import "graphite.css";
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Roboto", sans-serif;
+    font-size: 14px;
+    border-radius: 0;
+}
+
+window#wofi {
+    background-color: transparent;
+}
+
+#outer-box {
+    background-color: rgba(23, 24, 27, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top-color: rgba(255, 255, 255, 0.14);
+    border-radius: 0;
+    padding: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+#input {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: @text;
+    caret-color: @accent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0;
+    padding: 10px 14px;
+    margin: 2px 2px 10px 2px;
+    font-size: 15px;
+}
+
+#input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+#input image {
+    color: @overlay1;
+}
+
+#scroll {
+    margin: 0 2px;
+}
+
+#inner-box {
+    background-color: transparent;
+    padding: 0;
+}
+
+#entry {
+    padding: 8px 10px;
+    margin: 2px 0;
+    border-radius: 0;
+    color: @subtext1;
+    transition: background-color 0.15s ease;
+}
+
+#entry:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: @text;
+}
+
+#entry:selected {
+    background-color: @accent;
+    color: @crust;
+}
+
+#entry:selected #text {
+    color: @crust;
+    font-weight: 600;
+}
+
+#entry image {
+    margin-right: 12px;
+    -gtk-icon-size: 32px;
+}
+
+#text {
+    color: inherit;
+}

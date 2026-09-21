@@ -1,0 +1,15 @@
+set $crust #0a0a0c
+set $mantle #101013
+set $base #17181b
+set $surface0 #202124
+set $surface1 #2b2c30
+set $surface2 #38393e
+set $overlay0 #48494f
+set $overlay1 #616268
+set $overlay2 #7c7d84
+set $subtext0 #9a9ba1
+set $subtext1 #b5b6bb
+set $text #e6e6e9
+set $accent #f2f2f4
+set $warning #b8a06b
+set $critical #b26363

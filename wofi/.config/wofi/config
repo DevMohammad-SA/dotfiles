@@ -1,0 +1,15 @@
+width=600
+height=460
+orientation=vertical
+halign=fill
+allow_images=true
+image_size=32
+allow_markup=true
+insensitive=true
+matching=fuzzy
+sort_order=alphabetical
+prompt=Search...
+filter_rate=100
+hide_scroll=true
+dynamic_lines=true
+gtk_dark=true
