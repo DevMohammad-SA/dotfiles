@@ -1,0 +1,36 @@
+# Graphite: neutral grayscale glass theme, matching sway/waybar/wofi
+sort=-time
+layer=overlay
+anchor=top-right
+
+font=JetBrainsMono Nerd Font 11
+width=350
+height=110
+padding=10
+margin=10
+icons=1
+max-icon-size=48
+
+background-color=#101013E6
+text-color=#e6e6e9FF
+border-color=#f2f2f4FF
+border-size=1
+border-radius=0
+
+default-timeout=5000
+ignore-timeout=false
+
+[urgency=low]
+border-color=#48494fFF
+text-color=#b5b6bbFF
+default-timeout=4000
+
+[urgency=normal]
+border-color=#f2f2f4FF
+text-color=#e6e6e9FF
+default-timeout=5000
+
+[urgency=critical]
+border-color=#b26363FF
+text-color=#e6e6e9FF
+default-timeout=0
