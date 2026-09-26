@@ -1,0 +1,59 @@
+# Graphite: neutral grayscale theme, matching sway/waybar/wofi/mako.
+# Works with both swaylock and swaylock-effects. Effects-only options (blur,
+# clock, fade-in) are passed by lock.sh, since plain swaylock rejects unknown
+# options in this file.
+
+# Fork once the lock is in place, so `lock.sh && systemctl suspend` is safe
+daemonize
+ignore-empty-password
+show-failed-attempts
+indicator-caps-lock
+
+# Fallback background when no screenshot is available
+color=17181b
+scaling=fill
+
+font=JetBrainsMono Nerd Font
+font-size=22
+indicator-radius=100
+indicator-thickness=6
+
+# Idle / typing
+inside-color=17181bcc
+ring-color=38393e
+line-color=00000000
+separator-color=00000000
+text-color=e6e6e9
+key-hl-color=f2f2f4
+bs-hl-color=7c7d84
+
+# Verifying
+inside-ver-color=202124cc
+ring-ver-color=f2f2f4
+line-ver-color=00000000
+text-ver-color=f2f2f4
+
+# Wrong password
+inside-wrong-color=17181bcc
+ring-wrong-color=b26363
+line-wrong-color=00000000
+text-wrong-color=b26363
+
+# Input cleared
+inside-clear-color=17181bcc
+ring-clear-color=616268
+line-clear-color=00000000
+text-clear-color=b5b6bb
+
+# Caps Lock on
+inside-caps-lock-color=17181bcc
+ring-caps-lock-color=b8a06b
+line-caps-lock-color=00000000
+text-caps-lock-color=b8a06b
+caps-lock-key-hl-color=f2f2f4
+caps-lock-bs-hl-color=7c7d84
+
+# Keyboard layout badge (shown because sway has us + ara)
+layout-bg-color=17181bcc
+layout-border-color=38393e
+layout-text-color=b5b6bb

@@ -1,4 +1,7 @@
 {
+  // Shared by the gaming PC (CachyOS, AMD GPU, no battery/backlight) and the
+  // ThinkPad T470 (Arch, BAT0 + BAT1, Intel iGPU). Hardware-specific modules
+  // hide themselves on the machine that lacks the hardware.
   "layer": "top",
   "position": "top",
   "spacing": 0,
@@ -8,22 +11,35 @@
   "margin-bottom": 0,
   "margin-left": 0,
   "modules-left": [
-    "sway/workspaces"
+    "sway/workspaces",
+    "sway/mode",
+    "sway/scratchpad",
+    "sway/window"
   ],
-  "modules-center": [],
+  "modules-center": [
+    "mpris"
+  ],
   "modules-right": [
     "custom/kblayout",
     "cpu",
+    "temperature",
     "memory",
+    "disk",
     "custom/gpu",
     "pulseaudio",
+    "backlight",
+    "bluetooth",
     "network",
     "custom/sep1",
+    "power-profiles-daemon",
     "battery",
+    "custom/battery-split",
     "custom/sep2",
     "clock",
     "custom/sep3",
-    "tray"
+    "custom/notifications",
+    "tray",
+    "custom/power"
   ],
   "sway/workspaces": {
     "disable-scroll": true,
@@ -35,6 +51,54 @@
       "default": "○"
     }
   },
+  // Only visible while a binding mode (e.g. resize) is active
+  "sway/mode": {
+    "format": "󰩨 {}",
+    "tooltip": false
+  },
+  "sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": [
+      "",
+      ""
+    ],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}",
+    "on-click": "swaymsg scratchpad show"
+  },
+  "sway/window": {
+    "format": "{title}",
+    "max-length": 60,
+    "icon": false,
+    "rewrite": {
+      "(.*) - Brave": "$1",
+      "(.*) — Mozilla Firefox": "$1"
+    }
+  },
+  // Left click play/pause, middle previous, right next (waybar defaults)
+  "mpris": {
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} {dynamic}",
+    "format-stopped": "",
+    "dynamic-order": [
+      "title",
+      "artist"
+    ],
+    "dynamic-len": 50,
+    "player-icons": {
+      "default": "󰐊",
+      "spotify": "",
+      "firefox": "󰈹",
+      "brave": "󰖟",
+      "mpv": ""
+    },
+    "status-icons": {
+      "paused": "󰏤"
+    },
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
   "tray": {
     "icon-size": 15,
     "spacing": 10,
@@ -42,8 +106,11 @@
   },
   "custom/kblayout": {
     "exec": "$HOME/.config/waybar/scripts/kblayout.sh",
+    "return-type": "json",
     "interval": 1,
-    "tooltip": false
+    "signal": 9,
+    "tooltip": true,
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next && pkill -RTMIN+9 -x waybar"
   },
   "cpu": {
     "interval": 5,
@@ -52,7 +119,25 @@
       "warning": 70,
       "critical": 90
     },
-    "tooltip": false
+    // Default tooltip lists per-core usage
+    "tooltip": true,
+    "on-click": "alacritty --class floating-tui -e btop"
+  },
+  // coretemp "Package id 0" exists on both machines (Intel CPUs)
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+    "input-filename": "temp1_input",
+    "interval": 5,
+    "warning-threshold": 75,
+    "critical-threshold": 90,
+    "format": "{icon} {temperatureC}°",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ],
+    "tooltip-format": "CPU package {temperatureC}°C",
+    "on-click": "alacritty --class floating-tui -e btop"
   },
   "memory": {
     "interval": 5,
@@ -61,14 +146,29 @@
       "warning": 80,
       "critical": 90
     },
-    "tooltip": false
+    "tooltip": true,
+    "tooltip-format": "RAM {used:0.1f} / {total:0.1f} GiB\nSwap {swapUsed:0.1f} / {swapTotal:0.1f} GiB",
+    "on-click": "alacritty --class floating-tui -e btop"
   },
+  "disk": {
+    "interval": 60,
+    "path": "/",
+    "format": "󰋊 {percentage_used}%",
+    "states": {
+      "warning": 85,
+      "critical": 95
+    },
+    "tooltip-format": "{path}  {used} used of {total}\n{free} free",
+    "on-click": "alacritty --class floating-tui -e sh -c 'df -h -x tmpfs -x devtmpfs -x efivarfs; printf \"\\nPress enter to close\"; read _'"
+  },
+  // Hidden on hardware without an amdgpu busy counter (T470)
   "custom/gpu": {
     "exec": "$HOME/.config/waybar/scripts/gpu.sh",
     "format": "󰢮 {}",
     "interval": 5,
     "return-type": "json",
-    "tooltip": false
+    "tooltip": true,
+    "on-click": "alacritty --class floating-tui -e btop"
   },
   "custom/sep1": {
     "format": "│",
@@ -82,9 +182,12 @@
     "format": "│",
     "tooltip": false
   },
+  // With no "bat" set, waybar combines every battery (T470 BAT0 + BAT1) and
+  // follows hot-swaps of the external pack. Hidden on the desktop.
   "battery": {
     "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
+    "format-plugged": " {capacity}%",
     "format-icons": [
       "",
       "",
@@ -92,25 +195,84 @@
       "",
       ""
     ],
+    "format-time": "{H}h {m}m",
+    "weighted-average": true,
     "interval": 5,
     "states": {
       "warning": 20,
       "critical": 10
     },
-    "tooltip": false
+    "tooltip": true,
+    "tooltip-format": "{timeTo}\n{power:0.1f} W · health {health}%",
+    "tooltip-format-full": "Fully charged · health {health}%"
   },
-  "network": {
-    "format-wifi": "󰖩 {signalStrength}%",
-    "format-ethernet": "󰈀 wired",
-    "format-disconnected": "󰖪 offline",
-    "tooltip-format": "{essid} · {ipaddr}",
+  // Separate int/ext readout; only shown while both T470 batteries are present
+  "custom/battery-split": {
+    "exec": "$HOME/.config/waybar/scripts/battery-split.sh",
+    "return-type": "json",
+    "interval": 10,
     "tooltip": true
   },
+  // Backlight only exists on the T470; scroll adjusts it through logind
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ],
+    "scroll-step": 5,
+    "tooltip": false
+  },
+  // Click cycles power-saver / balanced / performance
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "󰾅",
+      "performance": "󰓅",
+      "balanced": "󰾅",
+      "power-saver": "󰾆"
+    }
+  },
+  "network": {
+    "interval": 5,
+    "format-wifi": "󰖩 {signalStrength}%",
+    "format-ethernet": "󰈀 wired",
+    "format-linked": "󰈀 no ip",
+    "format-disconnected": "󰖪 offline",
+    "tooltip-format": "{essid} · {ipaddr}",
+    "tooltip-format-wifi": "{essid} · {signalStrength}% · {frequency} GHz\n{ipaddr}/{cidr} via {gwaddr}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}",
+    "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr} via {gwaddr}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "tooltip": true,
+    "on-click": "alacritty --class floating-tui -e nmtui",
+    "on-click-right": "nm-connection-editor"
+  },
+  // Hidden when there is no Bluetooth controller (gaming PC)
+  "bluetooth": {
+    "format": "󰂯",
+    "format-off": "󰂲",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱 {num_connections}",
+    "format-connected-battery": "󰂱 {device_battery_percentage}%",
+    "format-no-controller": "",
+    "tooltip-format": "{controller_alias} · {status}",
+    "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}  {device_battery_percentage}%",
+    "on-click": "alacritty --class floating-tui -e bluetoothctl",
+    "on-click-right": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && bluetoothctl power off || bluetoothctl power on'"
+  },
+  // Right click mutes output, middle click mutes the mic
   "pulseaudio": {
     "scroll-step": 5,
     "max-volume": 150,
     "format": "{icon} {volume}%",
     "format-muted": "󰝟 muted",
+    "format-source": "{volume}%",
+    "format-source-muted": "muted",
     "format-icons": {
       "default": [
         "󰕿",
@@ -119,11 +281,52 @@
       ]
     },
     "format-bluetooth": " {volume}%",
+    "format-bluetooth-muted": " muted",
     "on-click": "pavucontrol",
-    "tooltip": false
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-middle": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "tooltip": true,
+    "tooltip-format": "{desc}\nOutput {volume}% · Mic {format_source}"
   },
+  // Left click toggles the long date; calendar: scroll = month, right click = year view
   "clock": {
     "format": "󰅐 {:%a %d %b, %I:%M %p}",
-    "tooltip-format": "<tt>{calendar}</tt>"
+    "format-alt": "󰃭 {:%A %d %B %Y · week %V}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "left",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#e6e6e9'><b>{}</b></span>",
+        "days": "<span color='#b5b6bb'>{}</span>",
+        "weeks": "<span color='#616268'>W{}</span>",
+        "weekdays": "<span color='#9a9ba1'><b>{}</b></span>",
+        "today": "<span color='#0a0a0c' background='#f2f2f4'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-middle": "shift_reset",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  // Mako do-not-disturb: click toggles, right click restores, middle dismisses all
+  "custom/notifications": {
+    "exec": "$HOME/.config/waybar/scripts/notifications.sh",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 8,
+    "tooltip": true,
+    "on-click": "$HOME/.config/waybar/scripts/notifications.sh toggle",
+    "on-click-right": "makoctl restore",
+    "on-click-middle": "makoctl dismiss --all"
+  },
+  "custom/power": {
+    "format": "⏻",
+    "tooltip": false,
+    "on-click": "$HOME/.config/wofi/scripts/powermenu.sh"
   }
 }

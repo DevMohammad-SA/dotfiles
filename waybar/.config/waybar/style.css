@@ -70,13 +70,21 @@ tooltip label {
 /* Flat modules, separated by thin custom dividers rather than boxes */
 #custom-kblayout,
 #cpu,
+#temperature,
 #memory,
+#disk,
 #custom-gpu,
 #pulseaudio,
+#backlight,
+#bluetooth,
 #network,
+#power-profiles-daemon,
 #battery,
+#custom-battery-split,
 #clock,
-#tray {
+#custom-notifications,
+#tray,
+#custom-power {
     padding: 0 8px;
     background: transparent;
     color: @subtext1;
@@ -85,12 +93,19 @@ tooltip label {
 
 #custom-kblayout:hover,
 #cpu:hover,
+#temperature:hover,
 #memory:hover,
+#disk:hover,
 #custom-gpu:hover,
 #pulseaudio:hover,
+#backlight:hover,
+#bluetooth:hover,
 #network:hover,
+#power-profiles-daemon:hover,
 #battery:hover,
-#clock:hover {
+#custom-battery-split:hover,
+#clock:hover,
+#custom-notifications:hover {
     color: @text;
 }
 
@@ -113,17 +128,84 @@ tooltip label {
 #network.disconnected { color: @overlay1; }
 #pulseaudio.muted { color: @overlay1; }
 
+/* Caps Lock active */
+#custom-kblayout.caps {
+    color: @accent;
+    font-weight: 600;
+}
+
+/* Secondary battery readout sits a little quieter than the combined total */
+#custom-battery-split {
+    color: @subtext0;
+    padding-left: 0;
+}
+#custom-battery-split.charging { color: @accent; }
+
+#power-profiles-daemon.performance { color: @accent; }
+#power-profiles-daemon.power-saver { color: @subtext0; }
+
+#bluetooth.off,
+#bluetooth.disabled,
+#custom-notifications.dnd {
+    color: @overlay1;
+}
+
+#custom-power {
+    padding: 0 6px 0 10px;
+}
+
+#custom-power:hover {
+    color: @critical;
+}
+
+/* Left side: binding mode, scratchpad count, focused window */
+#mode {
+    padding: 0 10px;
+    margin-left: 6px;
+    color: @crust;
+    background: @accent;
+    font-weight: 600;
+}
+
+#scratchpad {
+    padding: 0 8px;
+    color: @overlay2;
+}
+
+#window {
+    padding: 0 10px;
+    color: @subtext0;
+}
+
+window#waybar.empty #window {
+    padding: 0;
+}
+
+/* Center: media player */
+#mpris {
+    padding: 0 10px;
+    color: @subtext1;
+}
+
+#mpris.paused {
+    color: @overlay1;
+}
+
 /* Alert states keep a muted functional color for legibility */
 #battery.warning:not(.charging),
 #cpu.warning,
+#temperature.warning,
 #memory.warning,
+#disk.warning,
 #custom-gpu.warning {
     color: @warning;
 }
 
 #battery.critical:not(.charging),
 #cpu.critical,
+#temperature.critical,
 #memory.critical,
+#disk.critical,
 #custom-gpu.critical {
     color: @critical;
     animation-name: blink;

@@ -16,6 +16,8 @@ exec_always {
 # Start Notification Daemon
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec_always mako
+# Clipboard history for the wofi picker ($mod+Shift+v); no-op until cliphist is installed
+exec sh -c 'command -v cliphist >/dev/null && exec wl-paste --watch cliphist store'
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -29,11 +31,16 @@ set $right l
 set $term alacritty
 # Your preferred application launcher
 set $menu wofi --show drun
+# Wofi helper scripts (power menu, window switcher, clipboard history)
+set $wofi_scripts ~/.config/wofi/scripts
+# Blurred, themed lock screen (swaylock package)
+set $lock ~/.config/swaylock/lock.sh
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 #output * bg $HOME/Pictures/wallpapers/arch-minimal-wallpapers/wallpapers/full-hd/onedark.png fill
+output * bg /home/mohammad/Pictures/Wallpapers/dark-wallpaper-3840x2160.png fill
 
 #
 # Example configuration:
@@ -91,6 +98,15 @@ input * {
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # Wofi extras: power menu, window switcher, clipboard history (Shift+Ctrl deletes an entry)
+    bindsym $mod+Escape exec $wofi_scripts/powermenu.sh
+    bindsym $mod+Tab exec $wofi_scripts/windows.sh
+    bindsym $mod+Shift+v exec $wofi_scripts/clipboard.sh
+    bindsym $mod+Ctrl+Shift+v exec $wofi_scripts/clipboard.sh delete
+
+    # Lock the screen
+    bindsym $mod+Shift+x exec $lock
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -241,6 +257,9 @@ bindsym $mod+r mode "resize"
     #bindsym $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
     #bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png
     bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png && swappy -f ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png
+
+# TUIs launched from waybar clicks (btop, nmtui, bluetoothctl, df) float centered
+for_window [app_id="floating-tui"] floating enable, resize set 1100 700, move position center
 
 # target                 title     bg    text   indicator  border
 client.focused           $accent   $base $text     $accent    $accent

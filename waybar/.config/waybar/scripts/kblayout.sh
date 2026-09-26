@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Prints the active keyboard layout (en/ar), uppercased while Caps Lock is on.
+# Prints the active keyboard layout (en/ar), uppercased while Caps Lock is on,
+# as JSON so the full layout name shows in the tooltip.
 
 layout=$(swaymsg -t get_inputs | jq -r '[.[] | select(.type == "keyboard") | .xkb_active_layout_name][0] // empty')
 
@@ -19,7 +20,7 @@ for led in /sys/class/leds/*capslock/brightness; do
 done
 
 if [ "$caps" = "1" ]; then
-    echo "${short^^}"
+    printf '{"text":"%s","tooltip":"%s · Caps Lock on","class":"caps"}\n' "${short^^}" "$layout"
 else
-    echo "$short"
+    printf '{"text":"%s","tooltip":"%s","class":"normal"}\n' "$short" "$layout"
 fi

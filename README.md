@@ -35,6 +35,10 @@ stow */
 ### Windows Manager / Status Bar
 - **Window Manager**: Sway configuration for efficient tiling layout
 - **Status Bar**: Waybar with custom styling and system information
+- **Launcher**: Wofi, plus power menu, window switcher and clipboard history scripts
+- **Notifications**: Mako, with a do-not-disturb mode toggled from Waybar
+- **Lock Screen**: Swaylock with a blurred screenshot background (works with plain swaylock or swaylock-effects)
+
 ## Structure
 
 ```
@@ -43,11 +47,14 @@ dotfiles/
 ├── bash/           # Bash shell configuration
 ├── ghostty/        # Alternative terminal emulator
 ├── kitty/          # Kitty terminal emulator
+├── mako/           # Notification daemon
 ├── nvim/           # Neovim configuration with LazyVim
 ├── sway/           # Sway window manager
+├── swaylock/       # Lock screen theme + lock.sh
 ├── tmux/           # Terminal multiplexer
 ├── vimrc/          # Classic Vim configuration
 ├── waybar/         # Status bar configuration for Sway
+├── wofi/           # Launcher + helper scripts (power menu, windows, clipboard)
 └── zsh/            # Zsh shell configuration
 ```
 
@@ -65,7 +72,7 @@ dotfiles/
    ```
    Or stow individual packages:
    ```bash
-   stow alacritty bash ghostty kitty nvim sway tmux vimrc waybar zsh
+   stow alacritty bash ghostty kitty mako nvim sway swaylock tmux vimrc waybar wofi zsh
    ```
 
 ## Features
@@ -94,6 +101,41 @@ dotfiles/
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) & [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - [TPM](https://github.com/tmux-plugins/tpm) (tmux plugin manager)
 - JetBrains Mono Nerd Font (recommended font)
+
+### Sway desktop (Arch / CachyOS)
+
+The Sway, Waybar, Wofi, Mako and Swaylock configs are shared by two machines:
+a desktop (CachyOS, AMD GPU) and a ThinkPad T470 (Arch, dual battery). Everything
+below is in the official repos (plus the CachyOS repo for `swaylock-effects`):
+
+```bash
+sudo pacman -S --needed sway waybar wofi mako libnotify jq ttf-jetbrains-mono-nerd \
+    alacritty btop networkmanager nm-connection-editor pavucontrol libpulse playerctl \
+    bluez bluez-utils power-profiles-daemon wl-clipboard cliphist grim imagemagick \
+    brightnessctl swaylock
+```
+
+| Package | Used by |
+| --- | --- |
+| `sway`, `waybar`, `wofi`, `mako` | The desktop itself |
+| `ttf-jetbrains-mono-nerd` | Bar, launcher, notification and lock screen icons/font |
+| `jq` | Waybar keyboard-layout module, Wofi window switcher |
+| `libnotify` (`notify-send`) | Error notices from the lock and clipboard scripts |
+| `alacritty`, `btop` | Clicking CPU / temperature / memory / GPU in Waybar opens btop |
+| `networkmanager`, `nm-connection-editor` | Network module: click opens `nmtui`, right click opens the editor |
+| `pavucontrol`, `libpulse` (`pactl`) | Volume module: click opens pavucontrol, right/middle click mutes output/mic |
+| `playerctl` | Media module scroll-to-skip and the media keys |
+| `bluez`, `bluez-utils` (`bluetoothctl`) | Bluetooth module (hidden on machines without an adapter) |
+| `power-profiles-daemon` | Power profile module (click cycles saver / balanced / performance) |
+| `wl-clipboard`, `cliphist` | Clipboard history (`$mod+Shift+v`); the watcher is a no-op until cliphist is installed |
+| `swaylock` **or** `swaylock-effects` | Lock screen (`$mod+Shift+x`, power menu). Effects adds blur, clock and fade-in; it is in the CachyOS repo, and on Arch comes from the AUR (`paru -S swaylock-effects`) |
+| `grim`, `imagemagick` | Blurred lock screen background with plain swaylock |
+| `brightnessctl` | Brightness keys on the T470 (the Waybar backlight module scrolls via logind and doesn't need it) |
+
+Hardware notes:
+- The GPU module reads the `amdgpu` busy counter, so it only shows on the desktop.
+- The temperature module reads Intel `coretemp` (`/sys/devices/platform/coretemp.0`), which both machines have.
+- Battery, backlight and the per-battery (`int · ext`) readout only show on the T470; the split readout hides while the external battery is removed.
 
 ## Themes
 

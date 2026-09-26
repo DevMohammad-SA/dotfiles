@@ -34,3 +34,11 @@ default-timeout=5000
 border-color=#b26363FF
 text-color=#e6e6e9FF
 default-timeout=0
+
+# Toggled from the waybar bell (makoctl mode -t do-not-disturb); critical
+# notifications still get through.
+[mode=do-not-disturb]
+invisible=1
+
+[mode=do-not-disturb urgency=critical]
+invisible=0

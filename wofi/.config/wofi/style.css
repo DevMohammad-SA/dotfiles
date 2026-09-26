@@ -79,3 +79,22 @@ window#wofi {
 #text {
     color: inherit;
 }
+
+/* Desktop actions shown when an entry is expanded (Ctrl-l) */
+#expander-box {
+    padding-left: 44px;
+}
+
+#expander-box #entry {
+    padding: 6px 10px;
+    color: @subtext0;
+}
+
+#entry arrow {
+    color: @overlay1;
+    min-width: 14px;
+}
+
+#entry:selected arrow {
+    color: @crust;
+}
