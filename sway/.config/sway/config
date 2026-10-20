@@ -31,6 +31,12 @@ set $right l
 set $term alacritty
 # Your preferred application launcher
 set $menu wofi --show drun
+# Your preferred web browser
+set $browser brave
+# Start your browser
+bindsym $mod+n exec $browser
+# Start Thunar
+bindsym $mod+m exec thunar
 # Wofi helper scripts (power menu, window switcher, clipboard history)
 set $wofi_scripts ~/.config/wofi/scripts
 # Blurred, themed lock screen (swaylock package)
@@ -39,8 +45,8 @@ set $lock ~/.config/swaylock/lock.sh
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-#output * bg $HOME/Pictures/wallpapers/arch-minimal-wallpapers/wallpapers/full-hd/onedark.png fill
-output * bg /home/mohammad/Pictures/Wallpapers/dark-wallpaper-3840x2160.png fill
+output * bg $HOME/Pictures/wallpapers/arch-minimal-wallpapers/wallpapers/full-hd/onedark.png fill
+#output * bg /home/mohammad/Pictures/Wallpapers/dark-wallpaper-3840x2160.png fill
 
 #
 # Example configuration:
