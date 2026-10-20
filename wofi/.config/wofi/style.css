@@ -61,14 +61,16 @@ window#wofi {
     color: @text;
 }
 
+/* Enhanced selection style */
 #entry:selected {
     background-color: @accent;
-    color: @crust;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: @text;
 }
 
 #entry:selected #text {
-    color: @crust;
-    font-weight: 600;
+    color: @text;
+    font-weight: 700;
 }
 
 #entry image {
@@ -96,5 +98,5 @@ window#wofi {
 }
 
 #entry:selected arrow {
-    color: @crust;
+    color: @text;
 }
