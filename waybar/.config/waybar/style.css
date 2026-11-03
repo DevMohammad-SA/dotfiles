@@ -21,6 +21,12 @@ window#waybar {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
+window#waybar.bottombar {
+    border-top-color: rgba(255, 255, 255, 0.06);
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+}
+
 window#waybar > box {
     padding: 0 12px;
     min-height: 34px;
@@ -69,6 +75,7 @@ tooltip label {
 
 /* Flat modules, separated by thin custom dividers rather than boxes */
 #custom-kblayout,
+#custom-hw,
 #cpu,
 #temperature,
 #memory,
@@ -92,6 +99,7 @@ tooltip label {
 }
 
 #custom-kblayout:hover,
+#custom-hw:hover,
 #cpu:hover,
 #temperature:hover,
 #memory:hover,
@@ -109,6 +117,7 @@ tooltip label {
     color: @text;
 }
 
+#custom-sep,
 #custom-sep1,
 #custom-sep2,
 #custom-sep3 {
@@ -193,6 +202,7 @@ window#waybar.empty #window {
 
 /* Alert states keep a muted functional color for legibility */
 #battery.warning:not(.charging),
+#custom-hw.warning,
 #cpu.warning,
 #temperature.warning,
 #memory.warning,
@@ -202,6 +212,7 @@ window#waybar.empty #window {
 }
 
 #battery.critical:not(.charging),
+#custom-hw.critical,
 #cpu.critical,
 #temperature.critical,
 #memory.critical,

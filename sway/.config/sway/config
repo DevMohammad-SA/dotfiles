@@ -5,12 +5,12 @@ include graphite
 #
 # Read `man 5 sway` for a complete reference.
 # Set cursor for Wayland/Sway
-seat seat0 xcursor_theme Adwaita 24
+seat seat0 xcursor_theme Moga-Dark 24
 
 # Ensure GTK apps (like Brave or Thunar) pick up the theme
 exec_always {
     gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-    gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Original-Classic'
+    gsettings set org.gnome.desktop.interface cursor-theme 'Moga-Dark'
     gsettings set org.gnome.desktop.interface cursor-size 24
 }
 # Start Notification Daemon
@@ -45,7 +45,7 @@ set $lock ~/.config/swaylock/lock.sh
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-output * bg $HOME/Pictures/wallpapers/arch-minimal-wallpapers/wallpapers/full-hd/onedark.png fill
+output * bg /home/mohammad/Pictures/Wallpapers/dark-wallpaper-3840x2160.png fill
 #output * bg /home/mohammad/Pictures/Wallpapers/dark-wallpaper-3840x2160.png fill
 
 #
