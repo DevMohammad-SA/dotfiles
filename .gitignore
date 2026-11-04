@@ -90,3 +90,5 @@ Thumbs.db
 # Logs
 **/*.log
 **/logs/
+sway/.config/sway/local.conf
+sway/.config/sway/local.conf
