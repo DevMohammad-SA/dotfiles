@@ -41,6 +41,7 @@ if command -v eza >/dev/null 2>&1; then
 fi
 
 # ---- History ----
+HISTFILE=~/.zsh_history
 HISTSIZE=5000
 SAVEHIST=5000
 setopt HIST_IGNORE_ALL_DUPS SHARE_HISTORY INC_APPEND_HISTORY
@@ -49,6 +50,10 @@ setopt HIST_IGNORE_ALL_DUPS SHARE_HISTORY INC_APPEND_HISTORY
 autoload -Uz compinit
 # Use cached completion dump; rebuild only if needed
 compinit -C
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 if [[ -z "$SSH_AUTH_SOCK" ]] && ! pgrep -u "$USER" ssh-agent >/dev/null 2>&1; then
   eval "$(ssh-agent -s)" >/dev/null
