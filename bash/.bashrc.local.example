@@ -1,0 +1,44 @@
+# ~/.bashrc.local  (per-host overrides)
+# Copy to ~/.bashrc.local on each server and keep only what that host needs.
+# This file is sourced at the end of ~/.bashrc, so it can override anything.
+
+# ─────────────────────────────────────────────
+# Prompt
+# ─────────────────────────────────────────────
+
+# Yellow tag before user@host, useful to tell hosts apart at a glance
+# PROMPT_TAG="prod"
+
+# Show the local IP in the prompt (costs one extra command per prompt)
+# PROMPT_SHOW_IP=1
+
+# ─────────────────────────────────────────────
+# PATH
+# ─────────────────────────────────────────────
+
+# export PATH="$HOME/.local/bin:$PATH"
+
+# ─────────────────────────────────────────────
+# Optional tools (only if installed on this host)
+# ─────────────────────────────────────────────
+
+# if command -v eza >/dev/null 2>&1; then
+#   alias ls='eza --group-directories-first'
+#   alias ll='eza -lh --group-directories-first'
+#   alias tree='eza --tree'
+# fi
+
+# ─────────────────────────────────────────────
+# Host-specific aliases
+# ─────────────────────────────────────────────
+
+# alias dc='docker compose'
+# alias jl='journalctl -u myservice -f'
+
+# ─────────────────────────────────────────────
+# History overrides
+# ─────────────────────────────────────────────
+
+# HISTSIZE=50000
+# HISTFILESIZE=100000
+
