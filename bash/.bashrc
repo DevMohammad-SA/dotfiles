@@ -34,16 +34,26 @@ fi
 
 alias ll='ls -lAh'
 
+# Docker Compose
+alias dcup='docker compose up -d --pull always'
+alias dcdown='docker compose down'
+# Docker general
+alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dprune='docker image prune -f'
+
+# Others
+alias myip='curl -s ifconfig.me'
+
 # ─────────────────────────────────────────────
 # History
 # ─────────────────────────────────────────────
 
 HISTSIZE=10000
 HISTFILESIZE=20000
-HISTCONTROL=ignoreboth       # skip duplicates and commands starting with a space
-HISTTIMEFORMAT='%F %T '      # timestamps in `history` output
-shopt -s histappend          # append to the history file instead of overwriting it
-shopt -s checkwinsize        # re-check window size after each command
+HISTCONTROL=ignoreboth  # skip duplicates and commands starting with a space
+HISTTIMEFORMAT='%F %T ' # timestamps in `history` output
+shopt -s histappend     # append to the history file instead of overwriting it
+shopt -s checkwinsize   # re-check window size after each command
 
 # ─────────────────────────────────────────────
 # Completion
@@ -75,7 +85,7 @@ fi
 # ─────────────────────────────────────────────
 
 __set_prompt() {
-  local last_status=$?   # must stay the first line
+  local last_status=$? # must stay the first line
 
   # Colors. \[ \] tell readline these characters take no width.
   local c_reset="" c_user="" c_path="" c_ip="" c_red="" c_yellow="" c_branch="" c_sym=""
@@ -112,11 +122,11 @@ __set_prompt() {
   # Git branch: one `git status` call. Fails silently outside a repo.
   local git_part="" out branch dirty=""
   if command -v git >/dev/null 2>&1 && out=$(git status --porcelain -b 2>/dev/null); then
-    branch=${out%%$'\n'*}     # first line: "## branch...upstream"
+    branch=${out%%$'\n'*} # first line: "## branch...upstream"
     branch=${branch#\#\# }
     branch=${branch%%...*}
-    branch=${branch#No commits yet on }   # fresh repo with no commits
-    [[ "$out" == *$'\n'* ]] && dirty="*"   # any further line means changes
+    branch=${branch#No commits yet on }  # fresh repo with no commits
+    [[ "$out" == *$'\n'* ]] && dirty="*" # any further line means changes
     git_part=" (${c_branch}${branch}${c_red}${dirty}${c_reset})"
   fi
 
@@ -126,8 +136,8 @@ __set_prompt() {
 
 # Prepend once, so re-sourcing the file doesn't add it twice
 case ";${PROMPT_COMMAND:-};" in
-  *";__set_prompt;"*) ;;
-  *) PROMPT_COMMAND="__set_prompt${PROMPT_COMMAND:+;$PROMPT_COMMAND}" ;;
+*";__set_prompt;"*) ;;
+*) PROMPT_COMMAND="__set_prompt${PROMPT_COMMAND:+;$PROMPT_COMMAND}" ;;
 esac
 
 # ─────────────────────────────────────────────
@@ -136,4 +146,3 @@ esac
 # ─────────────────────────────────────────────
 
 [[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
-
